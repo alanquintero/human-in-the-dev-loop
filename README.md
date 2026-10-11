@@ -4,7 +4,7 @@ Portable AI skills for the software development lifecycle, with human judgment a
 
 > **Unreleased — in development.** Codex marketplace installation is available for trying the development version. Stable release and workflow verification remain pending.
 
-`repo-learning-tutor` has had brief author use; workflow verification across supported hosts and release checks remain pending for all ten skills.
+`repo-learning-tutor` has had brief author use; workflow verification across supported hosts and release checks remain pending for all eleven skills.
 
 Planned workflows include reviewing other contributors' PRs.
 
@@ -44,6 +44,12 @@ Use these additional development skills independently of the numbered steps when
 | --- | --- |
 | [task-debugger](skills/task-debugger/SKILL.md) | Investigate unexpected behavior, failing tests, or broken builds; establish the cause and hand off implementation without fixing application code. |
 | [merge-conflict-resolver](skills/merge-conflict-resolver/SKILL.md) | Preserve the target branch’s changes, integrate the feature changes around them, verify the resolution, and optionally commit it locally without pushing. |
+
+### Issue reporting
+
+| Skill | Purpose |
+| --- | --- |
+| [github-issue-drafter](skills/github-issue-drafter/SKILL.md) | Draft an issue title and description from the conversation or a supplied report, following repository examples and templates, for the user to publish manually. |
 
 ### Skill maintenance
 

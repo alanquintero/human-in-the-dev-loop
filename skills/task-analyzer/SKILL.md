@@ -3,7 +3,7 @@ name: task-analyzer
 description: Analyze a development task with the user, check their understanding, and prepare an implementation prompt for their approval.
 license: MIT
 metadata:
-  version: "0.1"
+  version: "0.2"
 ---
 
 # Task Analyzer
@@ -66,8 +66,8 @@ Ask whether the prompt accurately captures the task and whether changes are need
 
 ## Completion and handoff
 
-Finish only after the user has demonstrated sufficient task understanding, material decisions are resolved, and they explicitly approve the latest prompt. Return the approved copyable prompt and advise them to open a new chat in the target project, select the implementation task skill, and paste the prompt there. Never launch or implement automatically.
+Finish only after the user has demonstrated sufficient task understanding, material decisions are resolved, and they explicitly approve the latest prompt. Return the approved copyable prompt and advise them to open a new chat in the target project, select `task-developer`, and paste the prompt there. Never launch or implement automatically.
 
-The implementation task skill is planned and is not a prerequisite for analysis. Until it exists, say that the prompt is ready to keep for that future workflow; do not invent its name, invocation, availability, or guarantees. Once available, use its actual installed name and namespace. Completion of analysis does not require implementation to begin.
+`task-developer` is the implementation handoff, not a prerequisite for analysis. Resolve its actual installed name and namespace; if unavailable, advise keeping the prompt until the user installs it. Do not invent an invocation or claim workflow verification. Completion of analysis does not require implementation to begin.
 
 For skill maintenance, use [verification scenarios](references/scenarios.md); these are not part of the user's task conversation.

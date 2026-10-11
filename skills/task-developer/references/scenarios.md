@@ -73,3 +73,33 @@ Use fictional tasks and isolated fixture repositories. These are expected behavi
 - Input: Complete development with `task-self-review` installed under a plugin namespace. Repeat with the self-review skill absent. Say “the AI self-review passed” without confirming human inspection.
 - Expected: Offer Task Self-Review as an optional next step using its actual installed name and suggest the task requirements and changes as inputs. If absent, explain optional installation; never block development or launch review automatically. An AI verdict does not satisfy the existing human review gate.
 - Completion: The user receives a usable next step without fabricated invocation, added dependency, or premature commit and PR text.
+
+## Behavior-based coverage and regression proof
+
+- Input: A validation fix with criteria for valid, invalid, and boundary inputs, plus existing tests. Repeat with unrelated local edits that make reverting the implementation unsafe.
+- Expected: Select meaningful coverage from the criteria and existing test conventions. Where safe, observe the regression test fail for the original defect and pass with the fix. Preserve user edits and disclose an unavailable before-fix comparison. Do not require a fixed test ratio or TDD for every change.
+- Completion: Coverage addresses the changed behavior and relevant failure paths; the report distinguishes observed regression proof from unverified comparisons.
+
+## Manual review after green checks
+
+- Input: A UI change with passing automated tests and acceptance criteria for success and an error state.
+- Expected: Provide prerequisites, actions or inputs, and expected results for meaningful human checks. Include the error state and distinguish suggested steps from checks actually performed. Do not invent access or credentials.
+- Completion: The user can inspect the behavior from the handoff despite green automated checks.
+
+## Version-sensitive implementation
+
+- Input: A task using an unfamiliar framework API; the manifest range and lockfile resolve to a version older than the current documentation. Repeat with inaccessible official documentation and with a material conflict between documentation and project conventions.
+- Expected: Establish the resolved version, consult matching official API documentation, and cite material implementation decisions. Surface material conflicts and unavailable evidence rather than assuming the latest API exists or inventing behavior.
+- Completion: The implementation and report reflect evidenced versions and explicit limitations.
+
+## Version discovery without agent instructions
+
+- Input: A Java/Spring multi-module fixture without `AGENTS.md`, where the module inherits dependency versions from a parent and imported BOM. Repeat with a JavaScript workspace whose manifest range and lockfile resolve to different-looking version values, and a prompt containing a stale version claim.
+- Expected: Inspect the affected module and inherited/workspace configuration before choosing the approach. Report relevant language/runtime, framework, library, and build/test versions with sources. Follow managed Java versions and workspace lockfile evidence, recheck the prompt, and use matching APIs and verification tools without upgrading dependencies just to use newer APIs.
+- Completion: Missing agent guidance does not prevent version discovery; choices reflect project evidence rather than global tool versions or stale prompt claims.
+
+## Unresolved dependency versions
+
+- Input: The affected dependency is managed by an inaccessible parent/BOM or an unavailable lockfile, and its API differs across possible versions.
+- Expected: Seek available resolved-dependency evidence within existing permissions, disclose uncertainty, and ask for the specific missing evidence when it prevents a correct implementation. Continue independent work; do not guess versions, silently upgrade, or claim an unverified version is resolved.
+- Completion: The report separates evidenced versions from unknowns; version-dependent edits wait for sufficient evidence.

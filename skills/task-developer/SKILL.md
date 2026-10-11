@@ -3,7 +3,7 @@ name: task-developer
 description: Develop a task from an implementation prompt, verify the changes, and prepare commit and PR text after human review.
 license: MIT
 metadata:
-  version: "0.1"
+  version: "0.2"
 ---
 
 # Task Developer
@@ -26,6 +26,8 @@ For a task link from any tracker, read its requirements and relevant attachments
 4. Inspect the final diff for missed acceptance criteria, regressions, accidental files, and unrelated edits. Report what changed, relevant file locations, checks and results, and remaining limitations. Unresolved requirements or blockers mean implementation is incomplete; identify what is needed before requesting final review.
 
 Implementation is ready for review when the agreed scope is covered and every required check has a reported result or explicit limitation.
+
+Offer **Task Self-Review**, shipped as `task-self-review`, as an optional next step to check whether the changes are ready for human PR review. Resolve its actual installed name and namespace; if unavailable, explain that the user can install it later. Suggest supplying the task requirements or link and the local changes or PR link. Do not launch it automatically or treat its verdict as the user's review confirmation below. This handoff is optional; development remains usable without that skill.
 
 ## Human review
 

@@ -67,3 +67,9 @@ Use fictional tasks and isolated fixture repositories. These are expected behavi
 - Input: Install only the complete `task-developer` directory. Supply an adequate prompt and a project with documented commit conventions; repeat without a PR template or commit convention.
 - Expected: Resolve bundled resources without this source repository or personal files. Develop without requiring analysis for an adequate prompt. Follow project conventions when present; otherwise use a brief imperative commit subject and a concise PR summary, verification, and limitations.
 - Completion: The workflow and its handoff remain usable without sibling skills for prompt-based development.
+
+## Optional self-review handoff
+
+- Input: Complete development with `task-self-review` installed under a plugin namespace. Repeat with the self-review skill absent. Say “the AI self-review passed” without confirming human inspection.
+- Expected: Offer Task Self-Review as an optional next step using its actual installed name and suggest the task requirements and changes as inputs. If absent, explain optional installation; never block development or launch review automatically. An AI verdict does not satisfy the existing human review gate.
+- Completion: The user receives a usable next step without fabricated invocation, added dependency, or premature commit and PR text.

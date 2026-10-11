@@ -66,7 +66,7 @@ The names before and after `@` are the plugin and marketplace names; both are `h
 
 Registration is a one-time setup. Once the marketplace is registered, `codex plugin add human-in-the-loop@human-in-the-loop` is sufficient. Cloning and entering the repository alone did not make its marketplace discoverable in a fresh Codex CLI 0.160.0 profile, including with the checkout marked trusted. If the command reports that the plugin was not found in the marketplace, run `codex plugin marketplace add .` from the checkout, then retry installation.
 
-Restart Codex, open a fresh chat in your consuming project, and select `repo-learning-tutor`, `task-tech-tutor`, `task-analyzer`, or `task-developer` from the skill picker. Check all installed skills and their references. For standalone copied skills, you can also use `$repo-learning-tutor`.
+Restart Codex, open a fresh chat in your consuming project, and select `repo-learning-tutor`, `task-tech-tutor`, `task-analyzer`, `task-developer`, or `task-self-review` from the skill picker. Check all installed skills and their references. For standalone copied skills, you can also use `$repo-learning-tutor`.
 
 The installed plugin is cached. For GitHub installs, refresh the downloaded marketplace before reinstalling:
 
@@ -151,7 +151,8 @@ Cursor can load this repository's root `plugin.json` and all of `skills/` as an 
     ├── repo-learning-tutor/SKILL.md
     ├── task-tech-tutor/SKILL.md
     ├── task-analyzer/SKILL.md
-    └── task-developer/SKILL.md
+    ├── task-developer/SKILL.md
+    └── task-self-review/SKILL.md
 ```
 
 Include all supporting resources, not just the SKILL.md files. Restart Cursor or run **Developer: Reload Window**, open **Customize**, and check that all installed skills appear. Invoke `/repo-learning-tutor` or select it with `@` in Agent chat.
@@ -186,6 +187,7 @@ gemini skills uninstall repo-learning-tutor --scope user
 gemini skills uninstall task-tech-tutor --scope user
 gemini skills uninstall task-analyzer --scope user
 gemini skills uninstall task-developer --scope user
+gemini skills uninstall task-self-review --scope user
 ```
 
 For workspace installs, run in the consuming project and substitute `--scope workspace`. Check for new skills to unlink if the source catalog grows.
@@ -257,7 +259,7 @@ Local installation alone does not configure a remote host. Follow the provider's
 
 ## Try the installed skills
 
-In the project where you want to use the skills, invoke `repo-learning-tutor` using your agent's instructions above. You can also use `task-tech-tutor` to learn the technologies needed for a task, `task-analyzer` to understand the task and approve an implementation prompt, or `task-developer` to implement that prompt and prepare commit and PR text after human review. Check that the agent finds the skill and its bundled references. You can stop here if you only want to use or evaluate the skills; contribution checks are optional for local users.
+In the project where you want to use the skills, invoke `repo-learning-tutor` using your agent's instructions above. You can also use `task-tech-tutor` to learn the technologies needed for a task, `task-analyzer` to understand the task and approve an implementation prompt, `task-developer` to implement that prompt and prepare commit and PR text after human review, or `task-self-review` to check the changes against requirements before requesting human PR review. Check that the agent finds the skill and its bundled references. You can stop here if you only want to use or evaluate the skills; contribution checks are optional for local users.
 
 ## Optional: develop and contribute
 

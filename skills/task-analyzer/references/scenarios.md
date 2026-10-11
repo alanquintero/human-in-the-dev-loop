@@ -61,3 +61,9 @@ Use fictional or sanitized fixtures in a temporary project. Give a fresh agent t
 - Input: Use the analyzer alone with no sibling skills. `task-developer` is absent. Copy its approved prompt into a fresh session that has the project but none of the analyzer conversation. Separately, supply an actually installed implementation skill name with a plugin namespace.
 - Expected: Analyze without requiring either tutor. Produce a self-contained prompt with a clear implementation outcome and sections for context, requirements and acceptance, constraints and permissions, verification, and final deliverables. Include clarifications, evidence limitations, user restrictions, and supported reproduction steps or input/output examples where useful. Request a final report of changes, check results, and limitations; material missing requirements require clarification rather than guessing. Advise keeping the prompt until `task-developer` is installed; never fabricate an invocation. When that skill is available, name its actual installed form and recommend a new chat without launching it.
 - Completion: The fresh session can recover the agreed task from the prompt. Analysis completion is distinct from implementation availability, execution, or verification.
+
+## Optional planning handoff
+
+- Input: Finish analysis for a multi-component task with `task-planner` installed under a namespace; repeat with the planner absent and with a straightforward task.
+- Expected: Return the approved analyzer prompt and offer optional planning in the same chat or a fresh chat using that prompt when useful. Explain that planning adds implementation steps and returns a combined prompt for development. Resolve the installed name, never launch planning automatically, and preserve direct development when planning is unavailable or unnecessary.
+- Completion: Analysis remains independently usable; optional planning adds neither a required dependency nor execution authorization.

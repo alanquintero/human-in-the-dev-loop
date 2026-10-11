@@ -4,7 +4,7 @@ Use fictional tasks and isolated fixture repositories. These are expected behavi
 
 ## Prompt to reviewed handoff
 
-- Input: Supply a self-contained prompt to fix a localized validation bug, a fixture repository with instructions, tests, and a PR template. After implementation, say “I reviewed all the changes; everything looks good.”
+- Input: Supply a self-contained prompt to fix a localized validation bug, a fixture repository with instructions, tests, and a PR template. Choose complete implementation when asked. After implementation, say “I reviewed all the changes; everything looks good.”
 - Expected: Read project guidance and existing changes, implement the full scope, add a meaningful regression test, run required checks, inspect the diff, and ask for human review. Withhold commit and PR text until explicit review confirmation. Then supply a brief commit subject, PR title, and concise template-based description with actual verification results.
 - Completion: Acceptance criteria are satisfied; the three text items match the final changes. The agent has not staged, committed, pushed, or published.
 
@@ -17,7 +17,7 @@ Use fictional tasks and isolated fixture repositories. These are expected behavi
 ## Very easy task link
 
 - Input: Link to a readable fictional issue requesting one exact label correction with an explicit expected value and straightforward verification.
-- Expected: Fetch the issue, inspect relevant project context, establish that the task is localized and unambiguous, write a concise prompt in conversation, and implement it. Use proportionate verification; do not invent a test framework for a text correction.
+- Expected: Fetch the issue, inspect relevant project context, establish that the task is localized and unambiguous, write a concise prompt in conversation, settle the review preference before editing, and implement the selected scope. Use proportionate verification; do not invent a test framework for a text correction.
 - Completion: The generated prompt preserves the issue's scope. Verified changes are handed to the user for review before commit or PR text.
 
 ## Link requiring analysis
@@ -103,3 +103,39 @@ Use fictional tasks and isolated fixture repositories. These are expected behavi
 - Input: The affected dependency is managed by an inaccessible parent/BOM or an unavailable lockfile, and its API differs across possible versions.
 - Expected: Seek available resolved-dependency evidence within existing permissions, disclose uncertainty, and ask for the specific missing evidence when it prevents a correct implementation. Continue independent work; do not guess versions, silently upgrade, or claim an unverified version is resolved.
 - Completion: The report separates evidenced versions from unknowns; version-dependent edits wait for sufficient evidence.
+
+## Choose before direct development
+
+- Input: Supply an adequate direct development request without a preference. Choose complete implementation; repeat with smaller increments. Repeat with a large task and an existing plan but no choice.
+- Expected: Explain both workflows and wait for the choice before changing code. For complete implementation, implement and verify the full task, then stop for human review; committing afterward is manual. For smaller increments, agree coherent boundaries, dependencies, verification, and checkpoints before editing. Keep related code/tests together and explain intermediate limitations. Neither size nor the plan selects increments; avoid fixed file/line limits and per-step commits.
+- Completion: No code changes precede the choice; the selected scope and review gates are honored.
+
+## Existing choice in an approved handoff
+
+- Input: Supply an approved prompt explicitly selecting either workflow, with agreed increment boundaries when applicable. Repeat with an explicit choice earlier in the conversation.
+- Expected: Reuse the choice without asking again. Complete implementation runs through the full task before review; smaller increments implement and verify only the current agreed part before stopping. Recheck material conflicts without discarding the chosen workflow.
+- Completion: The choice survives the handoff, and a plan does not override complete implementation.
+
+## Corrections and acceptance at a checkpoint
+
+- Input: Choose smaller increments. At the first checkpoint, request a correction after saying the earlier version was reviewed. Then say “looks good” or “continue”; finally explicitly confirm reviewing and accepting the updated increment.
+- Expected: Report the increment's changes, checks, limitations, and remaining work, then stop. Apply corrections only to the current scope, repeat relevant verification, and request review of the latest changes. Withhold its commit message until both review and acceptance are explicit. Then provide only the increment's scoped commit message, without claiming the task is finished or providing final PR text.
+- Completion: The next increment remains untouched; correction acceptance is distinct from complete-task approval.
+
+## Waiting for the manual checkpoint commit
+
+- Input: Accept the latest increment, then say “continue” without committing. Later create an unrelated commit; finally manually commit the accepted changes and authorize the next part. Repeat with Git inspection unavailable and explicit user confirmation of the accepted increment's commit.
+- Expected: Provide the accepted increment's message, then wait. Inspect available Git evidence to confirm the accepted changes are in the checkpoint commit; an arbitrary new commit or “continue” is insufficient. When inspection is unavailable, obtain explicit user confirmation and disclose the limitation. Preserve other local changes. Proceed only after commit confirmation and authorization; never stage, commit, push, or publish for the user.
+- Completion: No next-part edits occur before both gates; report the evidence or confirmation accurately.
+
+## Resume partially completed increments
+
+- Input: Start a fresh session with a progress handoff recording one committed increment, another implemented but awaiting review, and remaining parts. Repeat with an accepted but uncommitted increment, missing evidence, conflicting Git history, or a later correction to accepted code.
+- Expected: Reuse the workflow and recheck source, diff, and available history. Track implemented/completed, accepted, committed, and remaining increments separately, with checks, limitations, and pending authorization. Resume the actual checkpoint; clarify missing/conflicting evidence instead of inventing approval, redoing accepted work, or advancing. Later edits reopen relevant verification and review. Keep the progress record conversational and copyable without writing progress files.
+- Completion: Continuation preserves every pending review/commit gate across sessions.
+
+## Combined completion and final approval
+
+- Input: Finish the last smaller increment. Accept only that increment, then explicitly confirm reviewing and approving the combined task. Repeat with its final manual commit pending and with a cross-increment acceptance check failing.
+- Expected: Verify the combined changes, including earlier commits, against all acceptance criteria. Fix failures and repeat affected verification/review rather than treating individual checkpoints as proof of completion. Increment acceptance alone does not unlock final PR text. After complete-task approval, provide final text under the existing rules, avoiding redundant commits of earlier increments; keep delivery incomplete while the final checkpoint commit is unconfirmed.
+- Completion: All criteria have results or explicit limitations, combined human approval is evidenced, and all manual checkpoint commits are confirmed. The agent performs no Git/publication writes.

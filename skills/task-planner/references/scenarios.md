@@ -49,3 +49,15 @@ Use fictional tasks and isolated fixture repositories. These are expected behavi
 - Input: Stop during plan review and resume with partial conversation or a handoff. Change affected code or versions in the meantime.
 - Expected: Resume from recorded evidence, recheck the changed baseline, and revise affected steps and verification. Keep unresolved decisions visible and seek approval for the current combined prompt rather than inventing prior approval.
 - Completion: The final prompt describes current evidence; incomplete planning is never presented as approved.
+
+## Review workflow choice and handoff
+
+- Input: Supply settled requirements without a review preference. Choose complete implementation; repeat choosing smaller increments for a database/API/UI task. Repeat with an explicit choice already in the conversation or approved handoff, including complete implementation for a large task with a plan.
+- Expected: Explain both choices and settle the preference before final prompt approval. Reuse existing choices without asking again; neither size nor a plan selects increments. For smaller increments, propose coherent boundaries with related tests, dependencies, verification, and human review/manual commit checkpoints. Explain any unavoidable intermediate limitations; avoid fixed file/line counts and per-step commits. Carry the selected workflow and its gates into the self-contained combined prompt.
+- Completion: The latest approved prompt includes the choice. Complete implementation keeps final review; smaller increments require review, corrections, acceptance, manual commit confirmation, and authorization before the next part. Planning remains read-only.
+
+## Partially completed increment handoff
+
+- Input: Resume planning from an explicit smaller-increments handoff with one increment implemented and accepted but not committed, one confirmed checkpoint commit, and remaining work. Repeat with missing commit evidence or changed code.
+- Expected: Reuse the choice and preserve distinct implemented, accepted, committed, and remaining states in the revised prompt. Recheck available evidence and clarify conflicts rather than inventing a passed checkpoint. Preserve pending manual commit confirmation and authorization, combined final verification, and complete-task approval before final PR text.
+- Completion: A fresh developer can identify the current checkpoint and remaining boundaries without redoing accepted work or bypassing review/commit gates; approve the latest combined prompt before handoff.

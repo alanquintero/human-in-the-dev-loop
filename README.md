@@ -24,12 +24,14 @@ For a particular task, follow this order: understand its technologies, understan
 | --- | --- | --- |
 | 1 | [task-tech-tutor](skills/task-tech-tutor/SKILL.md) | Learn the technologies and specific framework concepts the task requires before analyzing it. |
 | 2 | [task-analyzer](skills/task-analyzer/SKILL.md) | Understand the task, explain it in your own words, and approve a prompt for a separate implementation session. |
-| 2a (optional) | [task-planner](skills/task-planner/SKILL.md) | Review ordered implementation steps and approve one prompt containing both requirements and plan. |
-| 3 | [task-developer](skills/task-developer/SKILL.md) | Implement the prompt, verify the changes, and provide commit and PR text after the user confirms reviewing them. |
+| 2a (optional) | [task-planner](skills/task-planner/SKILL.md) | Choose the review workflow, review ordered steps, and approve one prompt containing requirements and plan. |
+| 3 | [task-developer](skills/task-developer/SKILL.md) | Implement and verify the whole task or agreed increments, with manual commits and text gated by human review. |
 | 4 (optional) | [task-self-review](skills/task-self-review/SKILL.md) | Check local changes or a draft or open PR against task requirements, report readiness for human review, and fix findings the user accepts. |
 | 5 (when feedback arrives) | [pr-feedback-handler](skills/pr-feedback-handler/SKILL.md) | Assess PR comments and their replies, propose fixes for approval, implement approved plans, and draft replies and commit text for manual use. |
 
 Invoke `task-planner` after analysis in the same chat, or paste the approved analyzer prompt into a fresh planning chat. Copy the planner’s final combined prompt into the development chat.
+
+Choose **complete implementation** for one review after the whole task is implemented and verified, with the complete change available for a manual commit afterward. Choose **smaller increments** to implement and verify one agreed coherent part at a time: review it, request corrections, accept it, then manually commit it before authorizing the next part. Planning settles and carries this choice into the approved prompt; direct development asks before changing code. An explicit existing choice is reused. Task size and a plan do not select increments automatically. Final PR text requires review and approval of the combined task; staging, commits, pushing, and publication remain manual.
 
 - **Use planning** when the requirements are understood but the implementation needs coordination: changes span several components, steps depend on one another, the approach needs discussion, or work will span multiple sessions. For example, adding an optional delivery date to orders may require a database migration, backend validation and API changes, a form input, and checks that existing orders still work. A plan makes the order and verification of those changes explicit.
 - **Skip planning** when the implementation and verification are straightforward, or the supplied prompt already contains an adequate plan. For example, correcting a validation message with exact replacement text and an existing test can go directly to `task-developer`. Several file edits alone do not require a separate planning step.

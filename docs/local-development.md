@@ -229,6 +229,8 @@ Refresh or remove copied directories as described below. [OpenCode's skills guid
 
 This repository's installer supports every local skill-folder route below. It copies **all** complete skill directories by default, including references, scripts, and assets. Run it from the source checkout with Python 3.9+; no third-party packages are needed. On Windows, use `py -3` instead of `python3` if needed.
 
+To install only one skill, add `--skill repo-learning-tutor` (or another catalog name) to the installer command. See [single-skill installation](installation.md#install-one-skill) for local-checkout examples and a third-party GitHub command that needs no manual clone.
+
 | Agent argument | Project destination | Personal destination |
 | --- | --- | --- |
 | `codex` | `.agents/skills/` | `~/.agents/skills/` |

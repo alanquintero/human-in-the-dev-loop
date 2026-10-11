@@ -37,6 +37,54 @@ Cascade's current project folder is `.devin/skills/`; the installer uses its doc
 
 Personal files stay on the local machine unless the agent explicitly syncs them. For remote or cloud sessions, install and commit project skills into the repository that session runs, or use the host's supported plugin/sync route. Cursor syncs personal skills from `~/.cursor/skills/` when enabled. Claude Cowork and cloud sessions use account skills; Claude cloud sessions can also read committed project skills. Local personal folders do not supply those sessions.
 
+## Install one skill
+
+You can install a complete skill directory independently. This repository's plugin routes install the whole bundle; use a standalone skill route when you want only one workflow. Include all references, scripts, and assets rather than downloading `SKILL.md` alone. A workflow that needs another skill for a later handoff will explain that; supplying sufficient standalone inputs avoids unnecessary dependencies.
+
+### From a local checkout
+
+With Python 3.9+, run from this repository's root to preview installing only `repo-learning-tutor` into an existing Codex project. Replace the project path with your own:
+
+```sh
+python3 scripts/install-skills.py --agent codex --scope project --project "/path/to/your-project" --skill repo-learning-tutor --dry-run
+```
+
+If the preview is correct, install:
+
+```sh
+python3 scripts/install-skills.py --agent codex --scope project --project "/path/to/your-project" --skill repo-learning-tutor
+```
+
+For personal installation across projects:
+
+```sh
+python3 scripts/install-skills.py --agent codex --scope user --skill repo-learning-tutor
+```
+
+These copy to `<project>/.agents/skills/repo-learning-tutor/` or `~/.agents/skills/repo-learning-tutor/`, respectively. Change `codex` to an installer agent name from the [installation matrix](#shared-format-different-installation-routes); replace the skill name with any [catalog entry](../README.md#skills-in-development). Repeat `--skill` to select several. Existing destinations are refused without overwriting. The same selection works with a development checkout now or a reviewed tagged checkout after release.
+
+Without Python, copy the entire `skills/repo-learning-tutor/` folder into the chosen agent's discovery folder. To update or uninstall, follow the [copy-installer guidance](#copy-installer).
+
+### From GitHub without a manual clone
+
+The third-party [Skills CLI](https://github.com/vercel-labs/skills#options) supports GitHub sources, skill selection, agent selection, and copying complete skill folders. With Node.js 22.20+ (including npm) and Git, run from your consuming project's root:
+
+```sh
+npx skills add alanquintero/human-in-the-loop --skill repo-learning-tutor --agent codex --copy
+```
+
+The default scope is the current project. For personal installation instead:
+
+```sh
+npx skills add alanquintero/human-in-the-loop --skill repo-learning-tutor --agent codex --copy --global
+```
+
+No persistent source checkout needs to be managed by the user; the CLI downloads source as needed. `--skill` selects one workflow, `--agent` selects the destination agent, and `--copy` chooses copies rather than symlinks. Follow the CLI's confirmation prompts. Its agent identifiers differ from this repository's Python installer: for example, use `claude-code`, `gemini-cli`, or `github-copilot` instead of `claude`, `gemini`, or `copilot`. Consult its [agent list](https://github.com/vercel-labs/skills#supported-agents) for destinations; do not assume every host uses the same folder as our installer.
+
+This installs from the repository's default development branch, which must contain the selected skill. For a stable release, use a direct GitHub skill-directory URL at the actual published tag, as supported by the CLI, instead of the default-branch shorthand. Stable release remains planned. The commands above were checked against upstream documentation; remote installation, updates, and agent discovery through this CLI remain unverified for this repository.
+
+Use `npx skills list --agent codex` to inspect project installs, adding `--global` for personal installs. For removal, use `npx skills remove repo-learning-tutor --agent codex` with the same scope; consult the CLI's [management commands](https://github.com/vercel-labs/skills#other-commands) for updates. Its overwrite and tracking behavior is separate from our conflict-refusing Python installer. Choose one route and scope to avoid duplicate installations. Restart or reload the agent, check discovery and bundled references, then invoke the standalone skill; in Codex, use `$repo-learning-tutor`.
+
 ## Copy installer
 
 After release, download a tagged source archive or clone the release tag, then run from this repository with Python 3.9+. On Windows use `py -3` instead of `python3` if needed. No third-party Python packages are required.

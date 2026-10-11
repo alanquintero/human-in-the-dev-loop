@@ -38,6 +38,16 @@ Teach one small area at a time, then check my understanding.
 
 See [Codex setup](docs/local-development.md#codex) for a local-checkout installation, registration checks, updates, uninstall, and `NOT_AVAILABLE` troubleshooting. Registration is required once; cloning alone does not register the marketplace. See [other agent setup routes](docs/local-development.md#clone-and-choose-an-agent) to try the skills outside Codex. [Stable release installation](docs/installation.md) remains planned.
 
+### Install just one skill
+
+The marketplace command above installs the whole plugin. To install only `repo-learning-tutor` for Codex in your current project, use the third-party [Skills CLI](https://github.com/vercel-labs/skills) with Node.js 22.20+ (including npm) and Git, without manually cloning this repository:
+
+```sh
+npx skills add alanquintero/human-in-the-loop --skill repo-learning-tutor --agent codex --copy
+```
+
+Run it from the project where you want the skill. It downloads source as needed and installs only the selected skill and its resources; add `--global` for personal installation across projects. This uses the development source, and this repository's remote Skills CLI route remains unverified. If you already have a checkout, use the Python installer's `--skill` option instead. See [single-skill examples](docs/installation.md#install-one-skill) for both routes, scopes, and other agents.
+
 ## How the skills connect
 
 Choose the entry point that matches your need. Arrows show handoffs you choose; skills do not launch the next workflow automatically. Dashed arrows mark optional preparation or review.

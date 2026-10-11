@@ -4,9 +4,7 @@ Portable AI skills for the software development lifecycle, with human judgment a
 
 > **Unreleased — in development.** Codex marketplace installation is available for trying the development version. Stable release and workflow verification remain pending.
 
-`repo-learning-tutor` has had brief author use; workflow verification across supported hosts and release checks remain pending for all eleven skills.
-
-Planned workflows include reviewing other contributors' PRs.
+`repo-learning-tutor` has had brief author use; workflow verification across supported hosts and release checks remain pending for all twelve skills.
 
 ## Skills (in development)
 
@@ -44,6 +42,12 @@ Use these additional development skills independently of the numbered steps when
 | --- | --- |
 | [task-debugger](skills/task-debugger/SKILL.md) | Investigate unexpected behavior, failing tests, or broken builds; establish the cause and hand off implementation without fixing application code. |
 | [merge-conflict-resolver](skills/merge-conflict-resolver/SKILL.md) | Preserve the target branch’s changes, integrate the feature changes around them, verify the resolution, and optionally commit it locally without pushing. |
+
+### Reviewing another contributor's PR
+
+| Skill | Purpose |
+| --- | --- |
+| [pr-reviewer](skills/pr-reviewer/SKILL.md) | Validate task understanding, wait for manual review, assess the user's findings, then review for additional issues and draft accepted comments for manual posting. Read-only throughout. |
 
 ### Issue reporting
 
@@ -85,7 +89,7 @@ codex plugin marketplace add . && codex plugin add human-in-the-loop@human-in-th
 
 Register the marketplace once. After registration, `codex plugin add human-in-the-loop@human-in-the-loop` is enough. In a fresh Codex CLI 0.160.0 profile, cloning and entering the directory alone did not register the marketplace.
 
-Restart Codex, open a fresh chat in the project where you want to use the skills, and select `repo-learning-tutor`, `task-tech-tutor`, `task-analyzer`, `task-planner`, `task-developer`, `task-self-review`, `pr-feedback-handler`, `task-debugger`, `merge-conflict-resolver`, or `skill-improver` from the skill picker. See [Codex setup and troubleshooting](docs/local-development.md#codex) for verification, updates, and an old marketplace showing `NOT_AVAILABLE`. Commands follow [OpenAI's CLI reference](https://learn.chatgpt.com/docs/developer-commands).
+Restart Codex, open a fresh chat in the project where you want to use the skills, and select `repo-learning-tutor`, `task-tech-tutor`, `task-analyzer`, `task-planner`, `task-developer`, `task-self-review`, `pr-reviewer`, `pr-feedback-handler`, `task-debugger`, `merge-conflict-resolver`, or `skill-improver` from the skill picker. See [Codex setup and troubleshooting](docs/local-development.md#codex) for verification, updates, and an old marketplace showing `NOT_AVAILABLE`. Commands follow [OpenAI's CLI reference](https://learn.chatgpt.com/docs/developer-commands).
 
 ## Supported agents (planned)
 

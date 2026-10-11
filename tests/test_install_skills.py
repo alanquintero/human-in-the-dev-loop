@@ -196,11 +196,14 @@ class PackagingTests(unittest.TestCase):
     def test_claude_catalog_stays_empty_until_release(self):
         portable = self.read_json("plugin.json")
         claude = self.read_json(".claude-plugin/marketplace.json")
+        readme = (REPOSITORY / "README.md").read_text(encoding="utf-8")
+        unreleased = "**Unreleased — in development.**" in readme
         if portable["version"].endswith("-dev"):
+            self.assertTrue(unreleased, "Development versions must retain the unreleased notice")
+        if unreleased:
             self.assertEqual(claude["plugins"], [])
         else:
-            self.assertEqual(claude["plugins"][0]["name"], portable["name"])
-            self.assertEqual(claude["plugins"][0]["source"], "./")
+            self.assertEqual(claude["plugins"], [{"name": portable["name"], "source": "./"}])
 
 
 if __name__ == "__main__":

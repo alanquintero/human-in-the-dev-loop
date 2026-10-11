@@ -1,6 +1,8 @@
 # Releasing the plugin
 
-The current `0.1.0-dev` version is development metadata, not a published stable release. The OpenAI marketplace entry is `AVAILABLE` so developers can install through Codex now. The Claude Code catalog is empty, and [stable release installation instructions](installation.md) remain planned. Users and contributors can follow the [local usage and development guide](local-development.md) before release; development installation does not complete this checklist.
+Both manifests are prepared for the first release, `0.1.0`; the version change alone does not publish or verify it. The README's unreleased notice remains until this checklist succeeds. The OpenAI marketplace entry is `AVAILABLE` for development installs. The Claude Code catalog stays empty, and [stable release installation instructions](installation.md) remain planned. Users and contributors can follow the [local usage and development guide](local-development.md) before release.
+
+Packaging checks use the README's explicit unreleased status to keep the Claude catalog closed during release preparation, even with a release version in the manifests. A `-dev` version must retain that notice. After verification, the release transition removes the notice and enables the reviewed Claude catalog together; the checks then require its plugin identity and root source to match.
 
 For development distribution through GitHub, push the commit containing the `AVAILABLE` catalog before sharing the installation command. Verify remote installation in an isolated profile, then upgrade an existing marketplace snapshot and retry installation. A local catalog edit does not update the remote repository or previously downloaded snapshots.
 

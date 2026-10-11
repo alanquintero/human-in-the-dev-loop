@@ -4,16 +4,30 @@ Portable AI skills for the software development lifecycle, with human judgment a
 
 > **Unreleased — in development.** Codex marketplace installation is available for trying the development version. Stable release and workflow verification remain pending.
 
-Planned workflows include task analysis, implementation, PR review, and self-review.
+Planned workflows include implementation, PR review, and self-review.
 
 ## Skills (in development)
+
+### Repository learning
+
+Build general knowledge of a project independently of a particular development task.
 
 | Skill | Purpose |
 | --- | --- |
 | [repo-learning-tutor](skills/repo-learning-tutor/SKILL.md) | Learn an unfamiliar code or documentation repository through orientation, guided practice, and local progress notes. |
-| [task-tech-tutor](skills/task-tech-tutor/SKILL.md) | Learn the technologies and specific framework concepts a ticket requires before detailed task analysis. |
 
-`repo-learning-tutor` has had brief author use; workflow verification across supported hosts and release checks remain pending for both skills.
+### Task development
+
+For a particular task, follow this order: understand its technologies, understand its requirements, then implement it in a new session.
+
+| Step | Skill | Purpose |
+| --- | --- | --- |
+| 1 | [task-tech-tutor](skills/task-tech-tutor/SKILL.md) | Learn the technologies and specific framework concepts the task requires before analyzing it. |
+| 2 | [task-analyzer](skills/task-analyzer/SKILL.md) | Understand the task, explain it in your own words, and approve a prompt for a separate implementation session. |
+
+The next step, the implementation task skill, is planned and has not been created. `task-analyzer` prepares its prompt without starting implementation.
+
+`repo-learning-tutor` has had brief author use; workflow verification across supported hosts and release checks remain pending for all three skills.
 
 ## Install in Codex now
 
@@ -35,7 +49,7 @@ codex plugin marketplace add . && codex plugin add human-in-the-loop@human-in-th
 
 Register the marketplace once. After registration, `codex plugin add human-in-the-loop@human-in-the-loop` is enough. In a fresh Codex CLI 0.160.0 profile, cloning and entering the directory alone did not register the marketplace.
 
-Restart Codex, open a fresh chat in the project where you want to use the skills, and select `repo-learning-tutor` or `task-tech-tutor` from the skill picker. See [Codex setup and troubleshooting](docs/local-development.md#codex) for verification, updates, and an old marketplace showing `NOT_AVAILABLE`. Commands follow [OpenAI's CLI reference](https://learn.chatgpt.com/docs/developer-commands).
+Restart Codex, open a fresh chat in the project where you want to use the skills, and select `repo-learning-tutor`, `task-tech-tutor`, or `task-analyzer` from the skill picker. See [Codex setup and troubleshooting](docs/local-development.md#codex) for verification, updates, and an old marketplace showing `NOT_AVAILABLE`. Commands follow [OpenAI's CLI reference](https://learn.chatgpt.com/docs/developer-commands).
 
 ## Supported agents (planned)
 

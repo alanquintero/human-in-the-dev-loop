@@ -66,7 +66,7 @@ The names before and after `@` are the plugin and marketplace names; both are `h
 
 Registration is a one-time setup. Once the marketplace is registered, `codex plugin add human-in-the-loop@human-in-the-loop` is sufficient. Cloning and entering the repository alone did not make its marketplace discoverable in a fresh Codex CLI 0.160.0 profile, including with the checkout marked trusted. If the command reports that the plugin was not found in the marketplace, run `codex plugin marketplace add .` from the checkout, then retry installation.
 
-Restart Codex, open a fresh chat in your consuming project, and select `repo-learning-tutor` or `task-tech-tutor` from the skill picker. Check both skills and their references. For standalone copied skills, you can also use `$repo-learning-tutor`.
+Restart Codex, open a fresh chat in your consuming project, and select `repo-learning-tutor`, `task-tech-tutor`, or `task-analyzer` from the skill picker. Check all installed skills and their references. For standalone copied skills, you can also use `$repo-learning-tutor`.
 
 The installed plugin is cached. For GitHub installs, refresh the downloaded marketplace before reinstalling:
 
@@ -149,10 +149,11 @@ Cursor can load this repository's root `plugin.json` and all of `skills/` as an 
 ├── plugin.json
 └── skills/
     ├── repo-learning-tutor/SKILL.md
-    └── task-tech-tutor/SKILL.md
+    ├── task-tech-tutor/SKILL.md
+    └── task-analyzer/SKILL.md
 ```
 
-Include all supporting resources, not just the two SKILL.md files. Restart Cursor or run **Developer: Reload Window**, open **Customize**, and check that both skills appear. Invoke `/repo-learning-tutor` or select it with `@` in Agent chat.
+Include all supporting resources, not just the SKILL.md files. Restart Cursor or run **Developer: Reload Window**, open **Customize**, and check that all installed skills appear. Invoke `/repo-learning-tutor` or select it with `@` in Agent chat.
 
 After edits, replace only this local plugin's copied files with the checkout's current files, then reload. To uninstall, remove only its local plugin folder and reload. Local imports must be allowed by your organization; an installed marketplace plugin with the same name takes precedence. Cursor skips external symlinks from this folder, so copy the files. These rules follow [Cursor's local plugin instructions](https://cursor.com/docs/plugins).
 
@@ -182,6 +183,7 @@ Remove each installed or linked skill by name, using the scope you chose:
 ```sh
 gemini skills uninstall repo-learning-tutor --scope user
 gemini skills uninstall task-tech-tutor --scope user
+gemini skills uninstall task-analyzer --scope user
 ```
 
 For workspace installs, run in the consuming project and substitute `--scope workspace`. Check for new skills to unlink if the source catalog grows.
@@ -194,7 +196,7 @@ Open the consuming workspace in Cascade, start a fresh chat, and mention `@repo-
 
 ## Cline
 
-Use batch-copy with `--agent cline`. Open the consuming project in Cline, click the scale icon beside the model selector, and open the **Skills** tab. Check both skills are present and enabled, then select `/repo-learning-tutor` from chat suggestions.
+Use batch-copy with `--agent cline`. Open the consuming project in Cline, click the scale icon beside the model selector, and open the **Skills** tab. Check all installed skills are present and enabled, then select `/repo-learning-tutor` from chat suggestions.
 
 Refresh or remove copied directories as described below. [Cline's skills guide](https://docs.cline.bot/customization/skills) documents automatic discovery, toggles, and slash commands. A global same-name skill takes precedence over a project skill, so remove duplicate test copies if your edits do not load.
 
@@ -253,13 +255,13 @@ Local installation alone does not configure a remote host. Follow the provider's
 
 ## Try the installed skills
 
-In the project where you want to use the skills, invoke `repo-learning-tutor` using your agent's instructions above. You can also use `task-tech-tutor` to learn the technologies needed for a task. Check that the agent finds the skill and its bundled references. You can stop here if you only want to use or evaluate the skills; contribution checks are optional for local users.
+In the project where you want to use the skills, invoke `repo-learning-tutor` using your agent's instructions above. You can also use `task-tech-tutor` to learn the technologies needed for a task, or `task-analyzer` to understand the task and approve an implementation prompt. Check that the agent finds the skill and its bundled references. You can stop here if you only want to use or evaluate the skills; contribution checks are optional for local users.
 
 ## Optional: develop and contribute
 
 For pull requests without repository write access, fork on GitHub and clone your fork instead. Create a branch before editing. Keep source changes in `skills/`, use a separate consuming project for scenario tests, and keep installed copies out of this plugin's commits.
 
-Edit `skills/<name>/SKILL.md` and its resources following the [authoring guide](skill-authoring.md). Refresh your chosen route, then run the skill's `references/scenarios.md` in fresh agent sessions. Verify discovery of both skills, explicit invocation, and access to bundled references. An installation or filesystem copy does not prove workflow execution.
+Edit `skills/<name>/SKILL.md` and its resources following the [authoring guide](skill-authoring.md). Refresh your chosen route, then run the skill's `references/scenarios.md` in fresh agent sessions. Verify discovery of all installed skills, explicit invocation, and access to bundled references. An installation or filesystem copy does not prove workflow execution.
 
 From the source checkout:
 

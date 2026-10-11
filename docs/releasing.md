@@ -15,6 +15,26 @@ For development distribution through GitHub, push the commit containing the `AVA
 7. Prepare the release commit with reviewed catalog changes. Publish it and a matching version tag (for example, `v0.1.0`) with release notes. Repeat every advertised native plugin, Gemini skill-management, and copy-install route against the tagged source in clean test setups. Include `codex plugin marketplace add alanquintero/human-in-the-loop --ref v0.1.0`, Claude marketplace registration from a tagged checkout, and the copy installer from the tagged archive. Substitute the actual tag.
 8. After the release's advertised routes succeed, remove the README's unreleased notice and replace planned commands with verified commands pinned to the tag. Retain explicit limitations for unverified routes. If verification fails, keep the warning and correct the package before announcing availability.
 
+## Documentation for the release
+
+Prepare the README and guides before publishing, but change their release status only after the checklist succeeds:
+
+- Keep the audience, starting points, complete skill catalog, workflow diagram, example prompts, and documentation links accurate for the shipped version. Check the diagram's rendering on GitHub, including narrow screens; its handoffs must match current skill boundaries and optional steps.
+- Make the verified tagged-release installation the primary README command. Keep default-branch commands in the development guide, labeled as development installation. Replace the example tag with the actual published tag.
+- Update the installation verification table with observed route results, dates, client versions, and remaining limitations. Planned routes must not become verified solely because a release tag exists.
+- Replace unreleased/planned wording only where backed by release evidence, including README, installation, local-development, repository-setup, and contribution guidance. Preserve limitations on unsupported or unverified hosts.
+- Publish release notes listing the shipped skills, prerequisites, relevant permission boundaries, tested routes, workflow coverage, and known limitations. Link to a public verification record; Git-ignored author notes alone cannot substantiate user-facing claims.
+
+## Verification record
+
+Use this format for actual runs in the PR or release notes. It is a blank template, not evidence of completion:
+
+| Source revision/tag | Agent/client version | Model | OS | Scope and installation route | Skill/scenario | Observed result | Skipped checks or limits |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Record the examined source | Record the client | Record the model, or unavailable | Record the OS | Record profile/project and route | Record the workflow and input | Record what actually happened | Record what remains unverified |
+
+Include the run date, tools available, and relevant fixture revisions or sanitized inputs. Separate installer/packaging checks, discovery/resource-loading checks, and behavioral scenario runs. Exercise a complete analysis-to-development handoff, optional planning, both development review choices, and review/feedback handoffs in addition to individual skills. Check missing inputs, changed revisions, user corrections, and approval boundaries without performing forbidden actions. See [CONTRIBUTING.md](../CONTRIBUTING.md) and each skill's scenarios for completion criteria.
+
 ## Later releases
 
 Bump both plugin manifests' versions when shipped behavior changes. Repeat scenario and installation checks, document behavior changes, publish a matching tag, and update the installation guide's pinned commands. Development on the default branch must not silently replace the release users installed.

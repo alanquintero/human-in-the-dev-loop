@@ -66,7 +66,7 @@ The names before and after `@` are the plugin and marketplace names; both are `h
 
 Registration is a one-time setup. Once the marketplace is registered, `codex plugin add human-in-the-loop@human-in-the-loop` is sufficient. Cloning and entering the repository alone did not make its marketplace discoverable in a fresh Codex CLI 0.160.0 profile, including with the checkout marked trusted. If the command reports that the plugin was not found in the marketplace, run `codex plugin marketplace add .` from the checkout, then retry installation.
 
-Restart Codex, open a fresh chat in your consuming project, and select `repo-learning-tutor`, `task-tech-tutor`, `task-analyzer`, `task-planner`, `task-developer`, `task-self-review`, `pr-reviewer`, `pr-feedback-handler`, `task-debugger`, `merge-conflict-resolver`, `pr-splitter`, or `skill-improver` from the skill picker. Check all installed skills and their references. For standalone copied skills, you can also use `$repo-learning-tutor`.
+Restart Codex, open a fresh chat in your consuming project, and select a skill from the skill picker. The [catalog](../README.md#skills-in-development) lists all thirteen skills, including `github-issue-drafter`. Check all installed skills and their references. For standalone copied skills, you can also use `$repo-learning-tutor`.
 
 The installed plugin is cached. For GitHub installs, refresh the downloaded marketplace before reinstalling:
 
@@ -159,6 +159,7 @@ Cursor can load this repository's root `plugin.json` and all of `skills/` as an 
     ├── task-debugger/SKILL.md
     ├── merge-conflict-resolver/SKILL.md
     ├── pr-splitter/SKILL.md
+    ├── github-issue-drafter/SKILL.md
     └── skill-improver/SKILL.md
 ```
 
@@ -273,7 +274,9 @@ Local installation alone does not configure a remote host. Follow the provider's
 
 ## Try the installed skills
 
-In the project where you want to use the skills, invoke `repo-learning-tutor` using your agent's instructions above. You can also use `task-tech-tutor` to learn the technologies needed for a task, `task-analyzer` to understand the task and approve an implementation prompt, `task-planner` after analysis to choose complete implementation or smaller reviewed increments and approve a combined requirements-and-plan prompt, `task-developer` to implement that workflow, wait for manual checkpoint commits when selected, and prepare final PR text after human review of the combined task, `task-self-review` to check the changes against requirements before requesting human PR review, or `pr-feedback-handler` to assess incoming PR feedback and implement approved fixes. Use `pr-reviewer` to review another contributor's PR after demonstrating task understanding and completing a manual review; findings and comments stay in chat for manual posting. Use `task-debugger` to investigate failures and prepare an implementation handoff without fixing application code. Use `merge-conflict-resolver` when merge conflicts arise to preserve the target branch’s changes and integrate the feature changes, with local resolution commits allowed and no pushing. Use `pr-splitter` to reorganize an existing large PR through approved boundaries and manual Git/hosting steps, checking each increment and the combined result. Use `skill-improver` with conversation feedback or a short description to improve existing skill sources while preserving their rules and permissions; maintenance changes remain uncommitted for human review. Check that the agent finds the skill and its bundled references. You can stop here if you only want to use or evaluate the skills; contribution checks are optional for local users.
+Open the project where you want to use the skills and select one using your agent's instructions above. Follow the [usage guide](using-skills.md) for example prompts, choosing optional preparation, complete implementation or smaller reviewed increments, review and feedback workflows, and other daily tasks. It explains the human checkpoints, manual publication boundaries, and merge resolver's local commit exception.
+
+Check that the agent finds the skill and loads its bundled references. Installation success does not verify workflow behavior. You can stop here if you only want to use or evaluate the skills; contribution checks are optional for local users.
 
 ## Optional: develop and contribute
 

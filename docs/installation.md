@@ -4,6 +4,18 @@
 
 To install in Codex now, follow [Codex setup](local-development.md#codex), which includes a single terminal line for GitHub installation and a route for an existing clone. For other agents or contribution setup, follow the rest of the [local usage and development guide](local-development.md). The tagged release commands below remain planned.
 
+## Verification status
+
+| Area | Recorded evidence | Remaining work |
+| --- | --- | --- |
+| Codex CLI, local checkout | Registration, installation, bundled-resource copying, update, and uninstall checked on macOS with CLI 0.160.0 on 2026-10-05. | Fresh-agent workflows and tagged-release installation. |
+| Codex CLI, GitHub marketplace | Registration succeeded on 2026-10-05, but the served revision had `NOT_AVAILABLE` and installation was rejected. | Repeat remote installation and marketplace upgrade against the available catalog and eventual release tag. |
+| Copy installer and package metadata | Automated fixtures cover destination handling, complete resource copying, and manifest/catalog contracts. | Skill discovery and workflow runs in each advertised host. |
+| Skill workflows | Brief author use of `repo-learning-tutor` and partial `task-tech-tutor` fixture runs are recorded in local author notes. | Complete representative runs for all thirteen current skills, including installed-resource loading and cross-workflow handoffs. |
+| Other native, desktop, and cloud routes | Setup instructions are provided; observed host verification remains pending. | Test each route before describing it as verified. |
+
+See [Codex's installation record](local-development.md#verification-status) for details. Local author notes are not distributed release evidence. Publish actual results and skipped checks with the release using the [release record format](releasing.md#verification-record); do not infer workflow success from installation or fixture checks.
+
 ## Shared format, different installation routes
 
 Every skill ships once in `skills/<name>/SKILL.md` using the [Agent Skills format](https://agentskills.io/specification). Copy its entire directory, including scripts, references, and assets. An agent's skill folder belongs in the consuming project or user profile; cloning this repository alone does not install its skills.

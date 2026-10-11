@@ -4,7 +4,7 @@ Portable AI skills for the software development lifecycle, with human judgment a
 
 > **Unreleased — in development.** Codex marketplace installation is available for trying the development version. Stable release and workflow verification remain pending.
 
-`repo-learning-tutor` has had brief author use; workflow verification across supported hosts and release checks remain pending for all twelve skills.
+`repo-learning-tutor` has had brief author use; workflow verification across supported hosts and release checks remain pending for all thirteen skills.
 
 ## Skills (in development)
 
@@ -36,12 +36,15 @@ Invoke `task-planner` after analysis in the same chat, or paste the approved ana
 
 If expected behavior or acceptance criteria are still unclear, return to `task-analyzer` before planning. Planning organizes how to implement agreed requirements.
 
-Use these additional development skills independently of the numbered steps when failures or merge conflicts arise.
+Use these additional development skills independently of the numbered steps when reorganizing an existing PR, investigating failures, or resolving merge conflicts.
 
 | Skill | Purpose |
 | --- | --- |
 | [task-debugger](skills/task-debugger/SKILL.md) | Investigate unexpected behavior, failing tests, or broken builds; establish the cause and hand off implementation without fixing application code. |
+| [pr-splitter](skills/pr-splitter/SKILL.md) | Propose an approved split of an existing large PR, then guide manual construction and verification of smaller independent or stacked PRs. |
 | [merge-conflict-resolver](skills/merge-conflict-resolver/SKILL.md) | Preserve the target branch’s changes, integrate the feature changes around them, verify the resolution, and optionally commit it locally without pushing. |
+
+Use `pr-splitter` for changes already implemented in a PR or local branch, rather than a future implementation plan. Approve the proposed boundaries before construction guidance; Git mutations and hosted actions stay manual. The skill checks each increment and the combined result, and keeps split artifacts in chat.
 
 ### Reviewing another contributor's PR
 
@@ -89,7 +92,7 @@ codex plugin marketplace add . && codex plugin add human-in-the-loop@human-in-th
 
 Register the marketplace once. After registration, `codex plugin add human-in-the-loop@human-in-the-loop` is enough. In a fresh Codex CLI 0.160.0 profile, cloning and entering the directory alone did not register the marketplace.
 
-Restart Codex, open a fresh chat in the project where you want to use the skills, and select `repo-learning-tutor`, `task-tech-tutor`, `task-analyzer`, `task-planner`, `task-developer`, `task-self-review`, `pr-reviewer`, `pr-feedback-handler`, `task-debugger`, `merge-conflict-resolver`, or `skill-improver` from the skill picker. See [Codex setup and troubleshooting](docs/local-development.md#codex) for verification, updates, and an old marketplace showing `NOT_AVAILABLE`. Commands follow [OpenAI's CLI reference](https://learn.chatgpt.com/docs/developer-commands).
+Restart Codex, open a fresh chat in the project where you want to use the skills, and select `repo-learning-tutor`, `task-tech-tutor`, `task-analyzer`, `task-planner`, `task-developer`, `task-self-review`, `pr-reviewer`, `pr-feedback-handler`, `task-debugger`, `merge-conflict-resolver`, `pr-splitter`, or `skill-improver` from the skill picker. See [Codex setup and troubleshooting](docs/local-development.md#codex) for verification, updates, and an old marketplace showing `NOT_AVAILABLE`. Commands follow [OpenAI's CLI reference](https://learn.chatgpt.com/docs/developer-commands).
 
 ## Supported agents (planned)
 

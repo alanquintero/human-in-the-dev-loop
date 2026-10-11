@@ -4,7 +4,7 @@ Portable AI skills for the software development lifecycle, with human judgment a
 
 > **Unreleased — in development.** Codex marketplace installation is available for trying the development version. Stable release and workflow verification remain pending.
 
-`repo-learning-tutor` has had brief author use; workflow verification across supported hosts and release checks remain pending for all nine skills.
+`repo-learning-tutor` has had brief author use; workflow verification across supported hosts and release checks remain pending for all ten skills.
 
 Planned workflows include reviewing other contributors' PRs.
 
@@ -45,6 +45,14 @@ Use these additional development skills independently of the numbered steps when
 | [task-debugger](skills/task-debugger/SKILL.md) | Investigate unexpected behavior, failing tests, or broken builds; establish the cause and hand off implementation without fixing application code. |
 | [merge-conflict-resolver](skills/merge-conflict-resolver/SKILL.md) | Preserve the target branch’s changes, integrate the feature changes around them, verify the resolution, and optionally commit it locally without pushing. |
 
+### Skill maintenance
+
+| Skill | Purpose |
+| --- | --- |
+| [skill-improver](skills/skill-improver/SKILL.md) | Improve existing skills from conversation feedback or a described gap, preserving core rules and permissions, and leave local changes for human review. |
+
+Invoke `skill-improver` in the conversation containing the feedback, or supply a short description and the target skill's source. Requested maintenance permits local skill edits; noticing a gap in another workflow only prompts an offer. Existing human decision steps and permission boundaries stay intact. PR feedback replies remain manual; the merge resolver's local resolution-commit exception is not extended to maintenance or other skills.
+
 ## Install in Codex now
 
 With Git and a Codex CLI that supports `codex plugin`, run this single line in your terminal (macOS/Linux or PowerShell 7+) once the default branch on GitHub contains the `AVAILABLE` catalog:
@@ -65,7 +73,7 @@ codex plugin marketplace add . && codex plugin add human-in-the-loop@human-in-th
 
 Register the marketplace once. After registration, `codex plugin add human-in-the-loop@human-in-the-loop` is enough. In a fresh Codex CLI 0.160.0 profile, cloning and entering the directory alone did not register the marketplace.
 
-Restart Codex, open a fresh chat in the project where you want to use the skills, and select `repo-learning-tutor`, `task-tech-tutor`, `task-analyzer`, `task-planner`, `task-developer`, `task-self-review`, `pr-feedback-handler`, `task-debugger`, or `merge-conflict-resolver` from the skill picker. See [Codex setup and troubleshooting](docs/local-development.md#codex) for verification, updates, and an old marketplace showing `NOT_AVAILABLE`. Commands follow [OpenAI's CLI reference](https://learn.chatgpt.com/docs/developer-commands).
+Restart Codex, open a fresh chat in the project where you want to use the skills, and select `repo-learning-tutor`, `task-tech-tutor`, `task-analyzer`, `task-planner`, `task-developer`, `task-self-review`, `pr-feedback-handler`, `task-debugger`, `merge-conflict-resolver`, or `skill-improver` from the skill picker. See [Codex setup and troubleshooting](docs/local-development.md#codex) for verification, updates, and an old marketplace showing `NOT_AVAILABLE`. Commands follow [OpenAI's CLI reference](https://learn.chatgpt.com/docs/developer-commands).
 
 ## Supported agents (planned)
 

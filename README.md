@@ -4,7 +4,7 @@ Portable AI skills for the software development lifecycle, with human judgment a
 
 > **Unreleased — in development.** Codex marketplace installation is available for trying the development version. Stable release and workflow verification remain pending.
 
-`repo-learning-tutor` has had brief author use; workflow verification across supported hosts and release checks remain pending for all five skills.
+`repo-learning-tutor` has had brief author use; workflow verification across supported hosts and release checks remain pending for all six skills.
 
 Planned workflows include reviewing other contributors' PRs.
 
@@ -20,7 +20,7 @@ Build general knowledge of a project independently of a particular development t
 
 ### Task development
 
-For a particular task, follow this order: understand its technologies, understand its requirements, then implement it in a new session. Optionally self-review the changes before requesting human PR review.
+For a particular task, follow this order: understand its technologies, understand its requirements, then implement it in a new session. Optionally self-review the changes before requesting human PR review, then handle feedback when it arrives.
 
 | Step | Skill | Purpose |
 | --- | --- | --- |
@@ -28,6 +28,7 @@ For a particular task, follow this order: understand its technologies, understan
 | 2 | [task-analyzer](skills/task-analyzer/SKILL.md) | Understand the task, explain it in your own words, and approve a prompt for a separate implementation session. |
 | 3 | [task-developer](skills/task-developer/SKILL.md) | Implement the prompt, verify the changes, and provide commit and PR text after the user confirms reviewing them. |
 | 4 (optional) | [task-self-review](skills/task-self-review/SKILL.md) | Check local changes or a draft or open PR against task requirements, report readiness for human review, and fix findings the user accepts. |
+| 5 (when feedback arrives) | [pr-feedback-handler](skills/pr-feedback-handler/SKILL.md) | Assess PR comments and their replies, propose fixes for approval, implement approved plans, and draft replies and commit text for manual use. |
 
 ## Install in Codex now
 
@@ -49,7 +50,7 @@ codex plugin marketplace add . && codex plugin add human-in-the-loop@human-in-th
 
 Register the marketplace once. After registration, `codex plugin add human-in-the-loop@human-in-the-loop` is enough. In a fresh Codex CLI 0.160.0 profile, cloning and entering the directory alone did not register the marketplace.
 
-Restart Codex, open a fresh chat in the project where you want to use the skills, and select `repo-learning-tutor`, `task-tech-tutor`, `task-analyzer`, `task-developer`, or `task-self-review` from the skill picker. See [Codex setup and troubleshooting](docs/local-development.md#codex) for verification, updates, and an old marketplace showing `NOT_AVAILABLE`. Commands follow [OpenAI's CLI reference](https://learn.chatgpt.com/docs/developer-commands).
+Restart Codex, open a fresh chat in the project where you want to use the skills, and select `repo-learning-tutor`, `task-tech-tutor`, `task-analyzer`, `task-developer`, `task-self-review`, or `pr-feedback-handler` from the skill picker. See [Codex setup and troubleshooting](docs/local-development.md#codex) for verification, updates, and an old marketplace showing `NOT_AVAILABLE`. Commands follow [OpenAI's CLI reference](https://learn.chatgpt.com/docs/developer-commands).
 
 ## Supported agents (planned)
 

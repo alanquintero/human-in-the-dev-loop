@@ -3,7 +3,7 @@ name: repo-learning-tutor
 description: Learn a code or documentation repository and the knowledge needed for supplied tasks through orientation and guided practice. Assess understanding without planning or implementing changes.
 license: MIT
 metadata:
-  version: "0.2"
+  version: "0.3"
 ---
 
 # Repository Learning Tutor
@@ -39,11 +39,13 @@ Accept an explicit choice from the invocation without asking again. Existing lea
 
 ## Filesystem and Git boundary
 
-Treat all project files as read-only except the skill's two local learning files, `PROJECT_KNOWLEDGE.md` and `LEARNING_STATE.md`. Create or update only these files; preserve existing learner notes. If an existing file is not clearly a tutoring note, leave it untouched and continue without persistence.
+Store the two learning files in `<project-root>/.ai-skill-local/repo-learning-tutor/`: `PROJECT_KNOWLEDGE.md` and `LEARNING_STATE.md`. This hidden folder is the shared home for skill-generated local artifacts, separated by skill name. Treat all other project files as read-only; create only the required directories and these two files. Preserve learner notes; never overwrite unrelated files or write through symlinked paths. If project instructions prohibit this location, continue without persistence rather than writing elsewhere in the repository.
 
-Never stage, commit, push, or perform other Git mutations while using this skill, even if asked. The only permitted Git write is appending missing learning-file rules to the local exclusion file resolved by `git rev-parse --git-path info/exclude`. Never edit project `.gitignore` files, the user's global ignore file, or Git configuration. Local exclusions are not committed or pushed.
+Never stage, commit, push, or perform other Git mutations while tutoring, even if asked. The only permitted Git write is appending the missing directory rule to the local exclusion file resolved by `git rev-parse --git-path info/exclude`. Never edit project `.gitignore`, global ignores, or Git configuration. Exclude the whole `.ai-skill-local/` directory with `/.ai-skill-local/`, prefixed by the project's relative path when nested and escaped for Git ignore metacharacters. Preserve existing exclusions; add this local rule even when other ignores cover the directory.
 
-Before every learning-file write in a Git project, verify both exact paths are untracked with `git ls-files`, their local `info/exclude` rules remain present, and they are ignored with `git check-ignore`. All files this skill creates must remain untracked and locally ignored. If either check fails, leave both learning files untouched and continue conversationally; never untrack an existing file to make persistence work. Outside Git, create only the two local learning files without initializing Git.
+Before creating directories or writing either learning file in Git, verify the artifact directory contains no tracked paths with `git --literal-pathspecs ls-files -- <artifact-directory>`, the local directory rule remains present, and both destinations are ignored with `git check-ignore`. Ignore rules do not protect tracked files. If tracking, conflicting patterns, permissions, unavailable Git commands, or unsafe paths prevent verification, leave both files untouched, explain why, and continue conversationally. Never untrack files to enable persistence. Outside Git, use the same folder without initializing Git.
+
+When the new files are absent, existing root-level tutoring notes may be read and their learner history copied into the new files after these safeguards pass. Leave originals and their exclusions untouched; report legacy paths so the user can review cleanup. If both locations exist, use the new files and surface conflicting history rather than silently overwriting it.
 
 ## First session in a project
 
@@ -51,8 +53,8 @@ Before every learning-file write in a Git project, verify both exact paths are u
 2. Classify what exists **now**: implementation, documentation/design only, or mixed. For code, map actual modules, important entry points, dependencies, and executable flows. For documentation-only projects, map document roles, architecture contracts, decisions, and intended flows. For mixed projects, distinguish specified behavior from implemented behavior and tests. Never describe a planned class or module as existing code. Trace one representative flow across its important boundaries, or mark where evidence ends.
 3. Establish the project's source-of-truth order from its own instructions and files. When sources conflict, cite the conflict and use the authoritative source if clear. Treat plans, examples, generated files, and translations according to their actual status in that project.
 4. If the project has modules, inventory **all** modules on first use. Find the authoritative module list in build/workspace manifests, repository directories, and project documentation. Distinguish module groups, actual build artifacts, and merely proposed modules. For each, capture its name, path or source link, one-line responsibility, and status; add important dependency or call relationships only when verified. Reconcile documentation with manifests and mark discrepancies instead of silently omitting modules. If an external project page is supplied, check that it describes this project, then use it as evidence while checking its version and claims against the repository when available.
-5. In a Git repository, ensure the learning files will stay local before creating them. Use `git rev-parse --git-path info/exclude` to locate the local exclude file (including linked worktrees). Check the exact learning-file paths with `git ls-files`; ignore rules do not protect tracked files. For untracked files, append their local rules if absent, even if another ignore file already covers them. Preserve existing exclusions and verify both paths with `git check-ignore`. Anchor rules at the Git root: `/PROJECT_KNOWLEDGE.md` and `/LEARNING_STATE.md`, prefixed with the project's relative directory if nested. If either file is tracked or exclusion cannot be verified, leave both untouched, explain why, and continue without persistence. For a non-Git project, no Git exclusion is needed.
-6. When persistence is available, create `PROJECT_KNOWLEDGE.md` and `LEARNING_STATE.md` at the project root if absent. Preserve any existing learner notes. Use the selected mode; completing the repository map does not require an Orientation lesson. Do not assume they have read the repository.
+5. Apply the filesystem and Git safeguards above before creating the artifact directory or either learning file. If persistence cannot be verified, continue without saving.
+6. When persistence is available, create the two files in `.ai-skill-local/repo-learning-tutor/` if absent, preserving existing learner notes. Use the selected mode; completing the repository map does not require an Orientation lesson. Do not assume they have read the repository.
 
 If the learner's goal or familiarity is unclear, ask one brief question after the initial map and use the answer to choose a starting area. Do not require a questionnaire before learning begins.
 

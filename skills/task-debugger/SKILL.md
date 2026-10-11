@@ -3,7 +3,7 @@ name: task-debugger
 description: Debug unexpected behavior, failing tests, or broken builds by establishing the cause and preparing an implementation handoff without fixing application code.
 license: MIT
 metadata:
-  version: "0.1"
+  version: "0.2"
 ---
 
 # Task Debugger
@@ -16,7 +16,7 @@ Accept a bug report or link, reproduction steps, unexpected behavior, or test/bu
 
 Read project guidance and inspect existing changes before investigation. Preserve user work. Local test runs, builds, and diagnostic commands are permitted when their side effects are understood and scoped to an isolated local test environment. Do not run experiments against production, shared services, or real customer data. If isolation, dependencies, or access are unavailable, continue static investigation and identify which conclusions cannot be tested.
 
-Keep source and configuration unchanged. If a minimal reproduction, diagnostic test, or temporary instrumentation would help, explain the proposed files, purpose, side effects, and cleanup, and obtain user authorization before writing; reuse explicit authorization already supplied. Use an isolated scratch directory or clean disposable checkout, never overwrite user files or change the active checkout to run experiments. Diagnostic artifacts must demonstrate the failure, not implement a fix. Clean up only artifacts created by this workflow, unless the user wants to retain them; report retained paths and side effects.
+Keep source and configuration unchanged. If a minimal reproduction, diagnostic test, or temporary instrumentation would help, explain the proposed files, purpose, side effects, and cleanup, and obtain user authorization before writing; reuse explicit authorization already supplied. Use an isolated scratch directory outside the active repository or a clean disposable checkout, never overwrite user files or change the active checkout to run experiments. Keep generated notes, logs, and standalone reproductions under `.ai-skill-local/task-debugger/` in a non-Git scratch folder outside all checkouts; never stage or commit them. Instrumentation requiring source paths stays confined to the disposable checkout. Diagnostic artifacts must demonstrate the failure, not implement a fix. Clean up only artifacts created by this workflow, unless the user wants to retain them; report retained paths and side effects.
 
 Never stage, commit, push, fetch, switch branches, merge, rebase, reset, stash, change Git configuration, publish, or deploy. Inspect relevant local history read-only with optional Git writes disabled. Do not install dependencies or change lockfiles as part of investigation; explain missing prerequisites. Requests for fixes or external actions require leaving this workflow; never switch automatically.
 

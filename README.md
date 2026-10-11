@@ -53,6 +53,12 @@ Use these additional development skills independently of the numbered steps when
 
 Invoke `skill-improver` in the conversation containing the feedback, or supply a short description and the target skill's source. Requested maintenance permits local skill edits; noticing a gap in another workflow only prompts an offer. Existing human decision steps and permission boundaries stay intact. PR feedback replies remain manual; the merge resolver's local resolution-commit exception is not extended to maintenance or other skills.
 
+## Local skill artifacts
+
+The tutors save learning documents in the target project's hidden `.ai-skill-local/` folder, with separate `repo-learning-tutor/` and `task-tech-tutor/` subfolders. They locally exclude the whole folder through Git's `info/exclude` and verify it stays untracked and ignored before writing. They never stage or commit notes or edit the project's `.gitignore`; if safe persistence is unavailable, learning continues in chat. Existing root-level notes are preserved when resuming in the new location.
+
+Other workflows keep conversational output in chat or edit the source files their tasks require. Task Debugger keeps authorized auxiliary artifacts in `.ai-skill-local/task-debugger/` inside an isolated scratch workspace outside the active repository.
+
 ## Install in Codex now
 
 With Git and a Codex CLI that supports `codex plugin`, run this single line in your terminal (macOS/Linux or PowerShell 7+) once the default branch on GitHub contains the `AVAILABLE` catalog:

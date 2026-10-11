@@ -3,7 +3,7 @@ name: task-tech-tutor
 description: Learn the technologies and framework concepts needed for a specific ticket before analyzing or implementing the task.
 license: MIT
 metadata:
-  version: "0.1"
+  version: "0.2"
 ---
 
 # Task Technology Tutor
@@ -26,7 +26,7 @@ Keep task reading limited to its stated goal and the evidence needed to select t
 
 ## Git and hosting boundary
 
-Never stage, commit, push, create branches or PRs, change Git configuration, or perform other Git or hosting mutations while tutoring, even if asked. Never edit or dispatch GitHub Actions workflows, or post to a tracker. Read-only Git commands and issue access are allowed. The only permitted Git metadata write is appending exact learning-document exclusions to the repository-local file resolved by `git rev-parse --git-path info/exclude`. Never edit project `.gitignore` files or global Git ignore/settings files, and never untrack existing files to enable notes. A publication request requires leaving tutoring for a separate workflow.
+Never stage, commit, push, create branches or PRs, change Git configuration, or perform other Git or hosting mutations while tutoring, even if asked. Never edit or dispatch GitHub Actions workflows, or post to a tracker. Read-only Git commands and issue access are allowed. The only permitted Git metadata write is appending the shared `.ai-skill-local/` directory exclusion to the repository-local file resolved by `git rev-parse --git-path info/exclude`. Never edit project `.gitignore` files or global Git ignore/settings files, and never untrack existing files to enable notes. A publication request requires leaving tutoring for a separate workflow.
 
 ## Identify prerequisites
 

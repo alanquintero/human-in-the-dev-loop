@@ -1,8 +1,8 @@
 # Human in the Loop
 
-Portable AI skills for developers joining a team and working in an unfamiliar repository. Learn the project, understand a task, implement it, and review changes with human judgment at the decisions that need it.
+Portable AI skills for developers who want to understand the systems they work on and stay actively involved when using AI. Learn an unfamiliar repository or technology, clarify a task, implement changes, investigate failures, and review code using the project's own evidence and conventions.
 
-For junior through senior engineers, using the project's own code, tests, and conventions. Each skill has a focused scope and can be used independently when its inputs are available.
+Useful at any career level, including junior, senior, staff, and principal engineers. Choose the skills that match your current needs; each has a focused scope and can be used independently when its inputs are available.
 
 > **Unreleased — in development.** Codex marketplace installation is available for trying the development version. Stable release and workflow verification remain pending.
 

@@ -1,6 +1,6 @@
 {
-  "name": "human-in-the-loop",
-  "description": "Human in the Loop lifecycle skills (unreleased; no installable entries).",
+  "name": "human-in-the-dev-loop",
+  "description": "Human in the Dev Loop lifecycle skills (unreleased; no installable entries).",
   "owner": {
     "name": "Alan Quintero"
   },

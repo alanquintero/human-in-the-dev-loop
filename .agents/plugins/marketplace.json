@@ -1,11 +1,11 @@
 {
-  "name": "human-in-the-loop",
+  "name": "human-in-the-dev-loop",
   "interface": {
-    "displayName": "Human in the Loop"
+    "displayName": "Human in the Dev Loop"
   },
   "plugins": [
     {
-      "name": "human-in-the-loop",
+      "name": "human-in-the-dev-loop",
       "source": {
         "source": "local",
         "path": "./"

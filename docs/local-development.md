@@ -7,8 +7,8 @@ Install and try the unreleased skills on your machine without contributing chang
 For Codex installation without a clone, skip to [Codex](#codex). For a local checkout or another agent, install Git and your chosen agent, then clone the source:
 
 ```sh
-git clone https://github.com/alanquintero/human-in-the-loop.git
-cd human-in-the-loop
+git clone https://github.com/alanquintero/human-in-the-dev-loop.git
+cd human-in-the-dev-loop
 ```
 
 Cloning alone does not install the skills. Choose a route below, then open the project where you want to use them in your agent. Forks, development branches, and repository checks are only needed when contributing changes.
@@ -33,7 +33,7 @@ Choose one route and scope per agent to avoid duplicate skill names. Native comm
 [Codex's CLI](https://learn.chatgpt.com/docs/developer-commands) installs the whole plugin after registering its marketplace. Install Git and a current Codex CLI; `codex plugin --help` must list `add` and `marketplace`. Run this single line in your terminal, without cloning first:
 
 ```sh
-codex plugin marketplace add alanquintero/human-in-the-loop && codex plugin add human-in-the-loop@human-in-the-loop
+codex plugin marketplace add alanquintero/human-in-the-dev-loop && codex plugin add human-in-the-dev-loop@human-in-the-dev-loop
 ```
 
 This installs the development version from the repository's default branch, which must contain the `AVAILABLE` catalog. Maintainers must push the enabling commit before sharing this command; local changes do not update GitHub or another machine's checkout. It is one shell line containing two Codex commands: register the marketplace, then install the plugin if registration succeeds. It works in macOS/Linux shells and PowerShell 7+; in older PowerShell, run each command separately and stop if registration fails. Native plugin installation needs no Python script or manual catalog edits.
@@ -51,41 +51,41 @@ If you already cloned the repository, run these steps from the checkout's root i
 2. Install the plugin from that marketplace:
 
    ```sh
-   codex plugin add human-in-the-loop@human-in-the-loop
+   codex plugin add human-in-the-dev-loop@human-in-the-dev-loop
    ```
 
 3. Confirm the plugin is installed and enabled:
 
    ```sh
-   codex plugin list --marketplace human-in-the-loop --json
+   codex plugin list --marketplace human-in-the-dev-loop --json
    ```
 
-   The `installed` array should contain `human-in-the-loop@human-in-the-loop` with `installed: true` and `enabled: true`. Use this verification command after GitHub installation too.
+   The `installed` array should contain `human-in-the-dev-loop@human-in-the-dev-loop` with `installed: true` and `enabled: true`. Use this verification command after GitHub installation too.
 
-The names before and after `@` are the plugin and marketplace names; both are `human-in-the-loop`. The catalog already sets installation to `AVAILABLE`. These commands update local Codex configuration and cache. Choose the GitHub source or local checkout; they share the same marketplace name. If switching sources, remove the configured marketplace first with `codex plugin marketplace remove human-in-the-loop`, then register the chosen source.
+The names before and after `@` are the plugin and marketplace names; both are `human-in-the-dev-loop`. The catalog already sets installation to `AVAILABLE`. These commands update local Codex configuration and cache. Choose the GitHub source or local checkout; they share the same marketplace name. If switching sources, remove the configured marketplace first with `codex plugin marketplace remove human-in-the-dev-loop`, then register the chosen source.
 
-Registration is a one-time setup. Once the marketplace is registered, `codex plugin add human-in-the-loop@human-in-the-loop` is sufficient. Cloning and entering the repository alone did not make its marketplace discoverable in a fresh Codex CLI 0.160.0 profile, including with the checkout marked trusted. If the command reports that the plugin was not found in the marketplace, run `codex plugin marketplace add .` from the checkout, then retry installation.
+Registration is a one-time setup. Once the marketplace is registered, `codex plugin add human-in-the-dev-loop@human-in-the-dev-loop` is sufficient. Cloning and entering the repository alone did not make its marketplace discoverable in a fresh Codex CLI 0.160.0 profile, including with the checkout marked trusted. If the command reports that the plugin was not found in the marketplace, run `codex plugin marketplace add .` from the checkout, then retry installation.
 
 Restart Codex, open a fresh chat in your consuming project, and select a skill from the skill picker. The [catalog](../README.md#skills-in-development) lists all thirteen skills, including `github-issue-drafter`. Check all installed skills and their references. For standalone copied skills, you can also use `$repo-learning-tutor`.
 
 The installed plugin is cached. For GitHub installs, refresh the downloaded marketplace before reinstalling:
 
 ```sh
-codex plugin marketplace upgrade human-in-the-loop
+codex plugin marketplace upgrade human-in-the-dev-loop
 ```
 
 For local installs, update the checkout with `git pull --ff-only` or edit its source files. Then reinstall and restart Codex:
 
 ```sh
-codex plugin remove human-in-the-loop@human-in-the-loop
-codex plugin add human-in-the-loop@human-in-the-loop
+codex plugin remove human-in-the-dev-loop@human-in-the-dev-loop
+codex plugin add human-in-the-dev-loop@human-in-the-dev-loop
 ```
 
-To uninstall, run `codex plugin remove human-in-the-loop@human-in-the-loop`, then `codex plugin marketplace remove human-in-the-loop`. See [OpenAI packaging](https://developers.openai.com/plugins/build/plugins) for cache behavior and local marketplaces.
+To uninstall, run `codex plugin remove human-in-the-dev-loop@human-in-the-dev-loop`, then `codex plugin marketplace remove human-in-the-dev-loop`. See [OpenAI packaging](https://developers.openai.com/plugins/build/plugins) for cache behavior and local marketplaces.
 
 ### If installation says NOT_AVAILABLE
 
-An older revision of this repository disabled installation. Run `codex plugin marketplace list` to see which source Codex is using. For a Git-backed marketplace, first confirm the enabling commit is on GitHub, then run the upgrade command above. For a local marketplace, update the checkout shown by that list and confirm `.agents/plugins/marketplace.json` has `policy.installation: "AVAILABLE"`. Retry `codex plugin add human-in-the-loop@human-in-the-loop`. If the configured source is an old test checkout, switch it to the desired source as described above. If your CLI does not recognize `codex plugin`, update the CLI before retrying.
+An older revision of this repository disabled installation. Run `codex plugin marketplace list` to see which source Codex is using. For a Git-backed marketplace, first confirm the enabling commit is on GitHub, then run the upgrade command above. For a local marketplace, update the checkout shown by that list and confirm `.agents/plugins/marketplace.json` has `policy.installation: "AVAILABLE"`. Retry `codex plugin add human-in-the-dev-loop@human-in-the-dev-loop`. If the configured source is an old test checkout, switch it to the desired source as described above. If your CLI does not recognize `codex plugin`, update the CLI before retrying.
 
 ### Verification status
 
@@ -95,7 +95,7 @@ The GitHub route was attempted on the same date. Registration succeeded, but Git
 
 ## ChatGPT Work
 
-Use the source checkout; its marketplace already permits installation. Open that checkout in the ChatGPT desktop app, open the Plugins Directory, select Human in the Loop from its local marketplace, and install. Check its packaged skills in a fresh Work chat. [OpenAI documents local marketplaces for the desktop app](https://developers.openai.com/plugins/build/plugins).
+Use the source checkout; its marketplace already permits installation. Open that checkout in the ChatGPT desktop app, open the Plugins Directory, select Human in the Dev Loop from its local marketplace, and install. Check its packaged skills in a fresh Work chat. [OpenAI documents local marketplaces for the desktop app](https://developers.openai.com/plugins/build/plugins).
 
 Local plugins load from an installed cache. Refresh the checkout, remove and reinstall through the plugin controls, and restart the app after changes. Uninstall through those controls when finished. This route applies to Work's supported local plugin surface; it does not install skills into every ChatGPT chat or a remote workspace. CLI installation does not verify this desktop route.
 
@@ -111,10 +111,10 @@ claude --plugin-dir .
 To test a different repository, start Claude there with an absolute path to this checkout:
 
 ```sh
-claude --plugin-dir "/absolute/path/to/human-in-the-loop"
+claude --plugin-dir "/absolute/path/to/human-in-the-dev-loop"
 ```
 
-In that Claude session, invoke `/human-in-the-loop:repo-learning-tutor` or `/human-in-the-loop:task-tech-tutor`. After editing the source, run `/reload-plugins` and start a fresh conversation for scenario testing. This is session-only loading: finish the session and launch without the flag to stop loading the plugin. [Claude's development guide](https://code.claude.com/docs/en/plugins/create) documents this route and reload behavior.
+In that Claude session, invoke `/human-in-the-dev-loop:repo-learning-tutor` or `/human-in-the-dev-loop:task-tech-tutor`. After editing the source, run `/reload-plugins` and start a fresh conversation for scenario testing. This is session-only loading: finish the session and launch without the flag to stop loading the plugin. [Claude's development guide](https://code.claude.com/docs/en/plugins/create) documents this route and reload behavior.
 
 For persistent standalone skills, use the batch-copy route with `--agent claude`. The repository's Claude marketplace stays empty until release; `--plugin-dir` needs no marketplace change.
 
@@ -132,7 +132,7 @@ Start Copilot in the project where you want to use the skills, run `/skills list
 After edits, refresh the local installation before starting a new session:
 
 ```sh
-copilot plugin uninstall human-in-the-loop
+copilot plugin uninstall human-in-the-dev-loop
 copilot plugin install .
 ```
 
@@ -142,10 +142,10 @@ For Copilot in VS Code or JetBrains, use the batch-copy route with `--agent copi
 
 ## Cursor
 
-Cursor can load this repository's root `plugin.json` and all of `skills/` as an Agent Plugin. Create a new folder at `~/.cursor/plugins/local/human-in-the-loop/`, then copy `plugin.json` and the entire `skills/` directory from your checkout into it. The result must be:
+Cursor can load this repository's root `plugin.json` and all of `skills/` as an Agent Plugin. Create a new folder at `~/.cursor/plugins/local/human-in-the-dev-loop/`, then copy `plugin.json` and the entire `skills/` directory from your checkout into it. The result must be:
 
 ```text
-~/.cursor/plugins/local/human-in-the-loop/
+~/.cursor/plugins/local/human-in-the-dev-loop/
 ├── plugin.json
 └── skills/
     ├── repo-learning-tutor/SKILL.md
@@ -181,7 +181,7 @@ gemini skills list
 For workspace scope, run from the consuming project's root with the source's absolute path:
 
 ```sh
-gemini skills link "/absolute/path/to/human-in-the-loop/skills" --scope workspace
+gemini skills link "/absolute/path/to/human-in-the-dev-loop/skills" --scope workspace
 ```
 
 Links use the current source files, including uncommitted edits. Keep the checkout in place. After changes, run `/skills reload` in Gemini and check `/skills list`. Ask Gemini to use `repo-learning-tutor`; Gemini presents its own activation consent prompt. [Gemini's skill management guide](https://geminicli.com/docs/cli/using-agent-skills/) documents linking, scopes, reload, and consent.

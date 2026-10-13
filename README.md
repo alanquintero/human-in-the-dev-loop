@@ -1,4 +1,4 @@
-# Human in the Loop
+# Human in the Dev Loop
 
 Portable AI skills for developers who want to understand the systems they work on and stay actively involved when using AI. Learn an unfamiliar repository or technology, clarify a task, implement changes, investigate failures, and review code using the project's own evidence and conventions.
 
@@ -23,7 +23,7 @@ The [usage guide](docs/using-skills.md) includes copyable examples, optional ste
 With Git and a Codex CLI that supports `codex plugin`, run this in your terminal (macOS/Linux or PowerShell 7+) once the default branch on GitHub contains the `AVAILABLE` catalog:
 
 ```sh
-codex plugin marketplace add alanquintero/human-in-the-loop && codex plugin add human-in-the-loop@human-in-the-loop
+codex plugin marketplace add alanquintero/human-in-the-dev-loop && codex plugin add human-in-the-dev-loop@human-in-the-dev-loop
 ```
 
 This registers the marketplace and installs the whole development plugin; no clone or Python installer is needed. In older PowerShell, run the two commands separately and stop if registration fails. Maintainers must push the enabling catalog commit before sharing this command.
@@ -43,7 +43,7 @@ See [Codex setup](docs/local-development.md#codex) for a local-checkout installa
 The marketplace command above installs the whole plugin. To install only `repo-learning-tutor` for Codex in your current project, use the third-party [Skills CLI](https://github.com/vercel-labs/skills) with Node.js 22.20+ (including npm) and Git, without manually cloning this repository:
 
 ```sh
-npx skills add alanquintero/human-in-the-loop --skill repo-learning-tutor --agent codex --copy
+npx skills add alanquintero/human-in-the-dev-loop --skill repo-learning-tutor --agent codex --copy
 ```
 
 Run it from the project where you want the skill. It downloads source as needed and installs only the selected skill and its resources; add `--global` for personal installation across projects. This uses the development source, and this repository's remote Skills CLI route remains unverified. If you already have a checkout, use the Python installer's `--skill` option instead. See [single-skill examples](docs/installation.md#install-one-skill) for both routes, scopes, and other agents.

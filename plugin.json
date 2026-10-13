@@ -1,11 +1,11 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
-  "name": "human-in-the-loop",
+  "name": "human-in-the-dev-loop",
   "version": "0.1.0",
   "description": "AI skills for task analysis, implementation, PR review, and self-review.",
   "author": {
     "name": "Alan Quintero"
   },
-  "repository": "https://github.com/alanquintero/human-in-the-loop",
+  "repository": "https://github.com/alanquintero/human-in-the-dev-loop",
   "license": "MIT"
 }

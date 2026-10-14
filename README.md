@@ -6,7 +6,7 @@ Useful at any career level, including junior, senior, staff, and principal engin
 
 > **Unreleased — in development.** Codex marketplace installation is available for trying the development version. Stable release and workflow verification remain pending.
 
-`repo-learning-tutor` has had brief author use. Partial `task-tech-tutor` scenario runs are recorded in local author notes; complete workflow verification across supported hosts and release checks remain pending for all thirteen skills. See [verification status](docs/installation.md#verification-status).
+`repo-learning-tutor` has had brief author use. Partial `task-tech-tutor` scenario runs are recorded in local author notes; complete workflow verification across supported hosts and release checks remain pending for all fourteen skills. See [verification status](docs/installation.md#verification-status).
 
 ## Start here
 
@@ -14,6 +14,7 @@ Useful at any career level, including junior, senior, staff, and principal engin
 - **New to the task's technology?** Use `task-tech-tutor` before analyzing the task.
 - **Unsure what the task requires?** Use `task-analyzer`; add `task-planner` when implementation needs coordination.
 - **Already have clear requirements?** Go directly to `task-developer` with a self-contained request.
+- **Want to implement it yourself with guidance?** Use `task-implementation-tutor` with clear requirements and a learning goal.
 - **Reviewing someone else's PR?** Use `pr-reviewer`; for your own changes, use `task-self-review`.
 
 The [usage guide](docs/using-skills.md) includes copyable examples, optional steps, review choices, and session handoffs. See the [documentation index](docs/README.md) for installation and contribution guides.
@@ -57,8 +58,11 @@ flowchart TD
     Repo["repo-learning-tutor<br/>Learn the repository"] -.-> Tech["task-tech-tutor<br/>Learn unfamiliar technology"]
     Tech -.-> Analyze["task-analyzer<br/>Understand requirements"]
     Analyze --> Develop["task-developer<br/>Implement and verify"]
+    Analyze -.-> Tutor["task-implementation-tutor<br/>Implement with guidance"]
     Analyze -.-> Plan["task-planner<br/>Plan when useful"]
     Plan --> Develop
+    Plan -.-> Tutor
+    Tutor --> Human
     Debug["task-debugger<br/>Establish a failure's cause"] -->|Clear fix handoff| Develop
     Develop --> Human["Human review of latest changes"]
     Develop -.-> Self["task-self-review<br/>Check your changes"]
@@ -68,9 +72,9 @@ flowchart TD
     Feedback --> Human
 ```
 
-Repository learning can stand alone. Skip technology tutoring when you already understand the relevant concepts; skip analysis when you can supply sufficient requirements directly to development. If a diagnosis leaves product decisions unresolved, use analysis before implementation. `pr-reviewer`, `pr-splitter`, `merge-conflict-resolver`, `github-issue-drafter`, and `skill-improver` are independent workflows described below.
+Repository learning can stand alone. Skip technology tutoring when you already understand the relevant concepts; skip analysis when you can supply sufficient requirements directly to development. Choose `task-implementation-tutor` when you want to write the implementation yourself with agreed agent assistance; it also accepts bounded learning projects. If a diagnosis leaves product decisions unresolved, use analysis before implementation. `pr-reviewer`, `pr-splitter`, `merge-conflict-resolver`, `github-issue-drafter`, and `skill-improver` are independent workflows described below.
 
-For smaller implementation increments, human review and manual commits also happen between increments. Final PR text follows review and approval of the combined task. The diagram shows the overall path; see [review choices](docs/using-skills.md#choose-how-to-review-implementation) for the checkpoints.
+For Task Developer's smaller implementation increments, human review and manual commits also happen between increments. Its final PR text follows review and approval of the combined task. The diagram shows the overall path; see [review choices](docs/using-skills.md#choose-how-to-review-implementation) for the checkpoints. Implementation tutoring reports changes for human review without requiring a commit between exercises.
 
 ## Skills (in development)
 
@@ -94,6 +98,12 @@ When preparation is needed, learn the task technology, analyze requirements, opt
 | 3 | [task-developer](skills/task-developer/SKILL.md) | Implement and verify the whole task or agreed increments, with manual commits and text gated by human review. |
 | 4 (optional) | [task-self-review](skills/task-self-review/SKILL.md) | Check local changes or a draft or open PR against task requirements, report readiness for human review, and fix findings the user accepts. |
 | 5 (when feedback arrives) | [pr-feedback-handler](skills/pr-feedback-handler/SKILL.md) | Assess PR comments and their replies, propose fixes for approval, implement approved plans, and draft replies and commit text for manual use. |
+
+For learner-owned implementation, choose this alternative to step 3:
+
+| Skill | Purpose |
+| --- | --- |
+| [task-implementation-tutor](skills/task-implementation-tutor/SKILL.md) | Implement a task or small learning project yourself with progressive hints and agreed agent support; track working behavior separately from independent understanding. |
 
 Use these additional development skills independently of the numbered steps when reorganizing an existing PR, investigating failures, or resolving merge conflicts.
 
@@ -123,7 +133,7 @@ Use these additional development skills independently of the numbered steps when
 
 ## Local skill artifacts
 
-The tutors save learning documents in the target project's hidden `.ai-skill-local/` folder, with separate `repo-learning-tutor/` and `task-tech-tutor/` subfolders. They locally exclude the whole folder through Git's `info/exclude` and verify it stays untracked and ignored before writing. They never stage or commit notes or edit the project's `.gitignore`; if safe persistence is unavailable, learning continues in chat. Existing root-level notes are preserved when resuming in the new location.
+`repo-learning-tutor` and `task-tech-tutor` save learning documents in the target project's hidden `.ai-skill-local/` folder, with separate skill subfolders. They locally exclude the whole folder through Git's `info/exclude` and verify it stays untracked and ignored before writing. They never stage or commit notes or edit the project's `.gitignore`; if safe persistence is unavailable, learning continues in chat. Existing root-level notes are preserved when resuming in the new location. `task-implementation-tutor` keeps progress handoffs in chat and edits only agreed task deliverables.
 
 Other workflows keep conversational output in chat or edit the source files their tasks require. Task Debugger keeps authorized auxiliary artifacts in `.ai-skill-local/task-debugger/` inside an isolated scratch workspace outside the active repository.
 

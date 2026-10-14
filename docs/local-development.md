@@ -66,7 +66,7 @@ The names before and after `@` are the plugin and marketplace names; both are `h
 
 Registration is a one-time setup. Once the marketplace is registered, `codex plugin add human-in-the-dev-loop@human-in-the-dev-loop` is sufficient. Cloning and entering the repository alone did not make its marketplace discoverable in a fresh Codex CLI 0.160.0 profile, including with the checkout marked trusted. If the command reports that the plugin was not found in the marketplace, run `codex plugin marketplace add .` from the checkout, then retry installation.
 
-Restart Codex, open a fresh chat in your consuming project, and select a skill from the skill picker. The [catalog](../README.md#skills-in-development) lists all thirteen skills, including `github-issue-drafter`. Check all installed skills and their references. For standalone copied skills, you can also use `$repo-learning-tutor`.
+Restart Codex, open a fresh chat in your consuming project, and select a skill from the skill picker. The [catalog](../README.md#skills-in-development) lists all fourteen skills, including `github-issue-drafter` and `task-implementation-tutor`. Check all installed skills and their references. For standalone copied skills, you can also use `$repo-learning-tutor`.
 
 The installed plugin is cached. For GitHub installs, refresh the downloaded marketplace before reinstalling:
 

@@ -2,7 +2,7 @@
 
 Use these workflows in the repository you want to learn or change. Install through your [agent's setup route](local-development.md), select the actual installed skill name and namespace, then send a request like the examples below. Examples are message text after selection, not universal slash commands.
 
-The [README diagram](../README.md#how-the-skills-connect) shows the main handoffs. Start where you need help; you do not have to complete every skill for every task. Learning and analysis do not authorize implementation, and approving a handoff prompt approves its wording, not execution.
+The [README diagram](../README.md#how-the-skills-connect) shows the main handoffs. Start where you need help; you do not have to complete every skill for every task. Repository/technology tutoring and analysis do not authorize implementation; implementation tutoring permits only agreed task edits. Approving a handoff prompt approves its wording, not execution.
 
 ## Learn a new repository
 
@@ -25,7 +25,31 @@ I know the language but need help with the framework concepts.
 Teach those concepts without designing the task's solution.
 ```
 
-Both tutors build understanding rather than implement changes. They check independent explanations or predictions before recording demonstrated learning. You can skip topics or stop; unchecked concepts remain visible. Neither tutor installs dependencies or starts services.
+These two tutors build understanding rather than implement changes. They check independent explanations or predictions before recording demonstrated learning. You can skip topics or stop; unchecked concepts remain visible. Neither tutor installs dependencies or starts services.
+
+## Implement a task yourself with guidance
+
+Select `task-implementation-tutor` with clear requirements and a learning goal:
+
+```text
+Help me implement this task myself: [paste clear requirements,
+acceptance criteria, constraints, and verification expectations].
+I want to practice the implementation; you may write the tests.
+Give hints without writing my implementation unless I ask.
+Verify each step and track learning separately from passing tests.
+```
+
+The ownership agreement controls agent edits. You can own the tests or all the code instead; the agent handles only agreed support. Missing product requirements need clarification or task analysis before implementation. An approved analysis or planning handoff is useful but not required.
+
+For a small learning project, try:
+
+```text
+Help me learn parsing by building a tiny arithmetic evaluator.
+I want to write all the code, including tests. Propose a bounded
+goal and finish line for us to agree, then guide my first step.
+```
+
+The tutor inspects current code, offers progressive hints, and checks observable behavior without imposing line counts or commits between exercises. Ask for a direct answer or scoped fix when useful; that assistance stays visible in the learning result. Passing tests do not establish independent understanding. You can stop or explicitly switch to ordinary agent implementation without completing more exercises. Resume handoffs stay in chat; Git and publication actions remain manual.
 
 ## Understand and plan a task
 
@@ -89,7 +113,7 @@ The developer provides commit text after explicit review and acceptance of the l
 
 ## Notes, boundaries, and resuming
 
-Tutors save learning progress under `.ai-skill-local/` when safe persistence is available. They locally exclude the folder through Git's `info/exclude`, verify it stays ignored and untracked, and preserve legacy notes. If persistence fails, learning continues in chat. They never stage or commit notes or edit project/global ignores. Debugger artifacts require authorization and stay in an isolated scratch workspace outside the active repository. Other workflows keep auxiliary output in chat or edit the source deliverables their tasks require.
+`repo-learning-tutor` and `task-tech-tutor` save learning progress under `.ai-skill-local/` when safe persistence is available. They locally exclude the folder through Git's `info/exclude`, verify it stays ignored and untracked, and preserve legacy notes. If persistence fails, learning continues in chat. They never stage or commit notes or edit project/global ignores. `task-implementation-tutor` keeps progress handoffs in chat and edits only agreed task deliverables. Debugger artifacts require authorization and stay in an isolated scratch workspace outside the active repository. Other workflows keep auxiliary output in chat or edit the source deliverables their tasks require.
 
 Commits, pushes, PR publication, issue publication, and review comments generally stay manual. The merge resolver's verified local staging and merge-commit exception does not extend to development, feedback handling, or skill maintenance. Approval never silently broadens a workflow's scope.
 

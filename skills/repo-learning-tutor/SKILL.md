@@ -3,7 +3,7 @@ name: repo-learning-tutor
 description: Learn a code or documentation repository and the knowledge needed for supplied tasks through orientation and guided practice. Assess understanding without planning or implementing changes.
 license: MIT
 metadata:
-  version: "0.3"
+  version: "0.4"
 ---
 
 # Repository Learning Tutor
@@ -43,7 +43,11 @@ Store the two learning files in `<project-root>/.ai-skill-local/repo-learning-tu
 
 Never stage, commit, push, or perform other Git mutations while tutoring, even if asked. The only permitted Git write is appending the missing directory rule to the local exclusion file resolved by `git rev-parse --git-path info/exclude`. Never edit project `.gitignore`, global ignores, or Git configuration. Exclude the whole `.ai-skill-local/` directory with `/.ai-skill-local/`, prefixed by the project's relative path when nested and escaped for Git ignore metacharacters. Preserve existing exclusions; add this local rule even when other ignores cover the directory.
 
-Before creating directories or writing either learning file in Git, verify the artifact directory contains no tracked paths with `git --literal-pathspecs ls-files -- <artifact-directory>`, the local directory rule remains present, and both destinations are ignored with `git check-ignore`. Ignore rules do not protect tracked files. If tracking, conflicting patterns, permissions, unavailable Git commands, or unsafe paths prevent verification, leave both files untouched, explain why, and continue conversationally. Never untrack files to enable persistence. Outside Git, use the same folder without initializing Git.
+If the required local rule is missing and the sandbox blocks appending it, request a narrowly scoped approved write through the available execution tool's approval/escalation mechanism. Identify the exclusion path, missing rule, and reason; request only this append, without broader or recurring permissions or promises of approval. Do not immediately abandon persistence or ask the learner to run a Terminal command.
+
+For either a normal or approved append, resolve the exclusion file with `git rev-parse --git-path info/exclude` within that operation; do not assume `.git` is a directory. Reject symlinks at the exclusion file or its repository-controlled parent components, as well as unsafe artifact paths. Recheck the exact escaped directory rule as a literal full line and append only if still missing, preserving existing bytes and adding a separating newline if needed. Retain the nested-project prefix and Git ignore escaping above; approval permits no other Git write.
+
+Before creating directories or writing either learning file in Git, including after an approved append, recheck that the artifact directory contains no tracked paths with `git --literal-pathspecs ls-files -- <artifact-directory>`, the exact local directory rule is present, and both destinations are ignored with `git check-ignore`. Ignore rules do not protect tracked files. If required approval is denied or unavailable, or tracking, conflicting patterns, permissions, unavailable Git commands, or unsafe paths still prevent verification, leave both files untouched, explain the specific blocker, and continue conversationally with progress explicitly unsaved. Never untrack files to enable persistence. Outside Git, use the same folder without initializing Git.
 
 When the new files are absent, existing root-level tutoring notes may be read and their learner history copied into the new files after these safeguards pass. Leave originals and their exclusions untouched; report legacy paths so the user can review cleanup. If both locations exist, use the new files and surface conflicting history rather than silently overwriting it.
 

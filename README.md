@@ -108,6 +108,19 @@ You can reverse the roles for step 3:
 
 Choose `task-implementation-tutor` when you want to learn by writing the code for a real task or small learning project. The AI gives progressive hints, reviews your attempts, and runs checks. You can assign it supporting work, such as tests, while keeping the parts you want to practice. Passing checks and independent understanding are tracked separately.
 
+To use an approved `task-analyzer` or `task-planner` prompt, select `task-implementation-tutor` in the target project, paste the prompt, and add your learning goal and ownership choices. Keep the handoff's requirements, constraints, and plan; explicitly assign the implementation to yourself:
+
+```text
+Use this handoff for guided implementation.
+I'll write the implementation; you may write the tests.
+Give hints and review my attempts without writing my code unless I ask.
+My learning goal is: [what you want to practice].
+
+[paste the approved Analyzer or Planner prompt]
+```
+
+You can also start with clear requirements or a small learning-project idea. Analysis and planning are optional preparation.
+
 Use these additional development skills independently of the numbered steps when reorganizing an existing PR, investigating failures, or resolving merge conflicts.
 
 | Skill | Purpose |

@@ -14,7 +14,7 @@ Useful at any career level, including junior, senior, staff, and principal engin
 - **New to the task's technology?** Use `task-tech-tutor` before analyzing the task.
 - **Unsure what the task requires?** Use `task-analyzer`; add `task-planner` when implementation needs coordination.
 - **Already have clear requirements?** Go directly to `task-developer` with a self-contained request.
-- **Want to implement it yourself with guidance?** Use `task-implementation-tutor` with clear requirements and a learning goal.
+- **Want to write the code while the AI reviews it?** Use `task-implementation-tutor` with clear requirements and a learning goal.
 - **Reviewing someone else's PR?** Use `pr-reviewer`; for your own changes, use `task-self-review`.
 
 The [usage guide](docs/using-skills.md) includes copyable examples, optional steps, review choices, and session handoffs. See the [documentation index](docs/README.md) for installation and contribution guides.
@@ -99,11 +99,14 @@ When preparation is needed, learn the task technology, analyze requirements, opt
 | 4 (optional) | [task-self-review](skills/task-self-review/SKILL.md) | Check local changes or a draft or open PR against task requirements, report readiness for human review, and fix findings the user accepts. |
 | 5 (when feedback arrives) | [pr-feedback-handler](skills/pr-feedback-handler/SKILL.md) | Assess PR comments and their replies, propose fixes for approval, implement approved plans, and draft replies and commit text for manual use. |
 
-For learner-owned implementation, choose this alternative to step 3:
+You can reverse the roles for step 3:
 
-| Skill | Purpose |
-| --- | --- |
-| [task-implementation-tutor](skills/task-implementation-tutor/SKILL.md) | Implement a task or small learning project yourself with progressive hints and agreed agent support; track working behavior separately from independent understanding. |
+| Skill | Who writes the implementation? | Who reviews the code? |
+| --- | --- | --- |
+| [task-developer](skills/task-developer/SKILL.md) | The AI | You |
+| [task-implementation-tutor](skills/task-implementation-tutor/SKILL.md) | You | The AI tutor |
+
+Choose `task-implementation-tutor` when you want to learn by writing the code for a real task or small learning project. The AI gives progressive hints, reviews your attempts, and runs checks. You can assign it supporting work, such as tests, while keeping the parts you want to practice. Passing checks and independent understanding are tracked separately.
 
 Use these additional development skills independently of the numbered steps when reorganizing an existing PR, investigating failures, or resolving merge conflicts.
 
